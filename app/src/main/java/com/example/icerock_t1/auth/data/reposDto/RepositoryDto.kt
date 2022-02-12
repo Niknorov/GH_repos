@@ -76,7 +76,7 @@ data class RepositoryDto (
     @SerializedName("pushed_at") val pushed_at : String,
     @SerializedName("created_at") val created_at : String,
     @SerializedName("updated_at") val updated_at : String,
-    @SerializedName("permissions") val permissionsDto : PermissionsDto,
+    @SerializedName("permissions") val permissionsReposDto : PermissionsReposDto,
     @SerializedName("allow_rebase_merge") val allow_rebase_merge : Boolean,
     @SerializedName("template_repository") val template_repository : String,
     @SerializedName("temp_clone_token") val temp_clone_token : String,

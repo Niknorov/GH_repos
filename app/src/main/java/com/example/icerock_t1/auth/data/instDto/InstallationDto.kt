@@ -1,4 +1,4 @@
-package com.example.icerock_t1.auth.data.loginDto
+package com.example.icerock_t1.auth.data.instDto
 
 import com.google.gson.annotations.SerializedName
 
@@ -13,7 +13,7 @@ data class InstallationDto(
     @SerializedName("app_id") val app_id: Int,
     @SerializedName("target_id") val target_id: Int,
     @SerializedName("target_type") val target_type: String,
-    @SerializedName("permissions") val permissionsDto: PermissionsDto,
+    @SerializedName("permissions") val permissionsInstDto: PermissionsInstDto,
     @SerializedName("events") val events: List<String>,
     @SerializedName("single_file_name") val single_file_name: String,
     @SerializedName("has_multiple_single_files") val has_multiple_single_files: Boolean,

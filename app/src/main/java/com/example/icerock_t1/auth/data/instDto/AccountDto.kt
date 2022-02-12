@@ -1,4 +1,4 @@
-package com.example.icerock_t1.auth.data.loginDto
+package com.example.icerock_t1.auth.data.instDto
 
 import com.google.gson.annotations.SerializedName
 
