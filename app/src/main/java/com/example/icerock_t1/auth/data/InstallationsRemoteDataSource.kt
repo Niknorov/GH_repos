@@ -1,7 +1,6 @@
 package com.example.icerock_t1.auth.data
 
-import com.example.icerock_t1.auth.data.AuthApi
-import com.example.icerock_t1.auth.data.instDto.InstallationsDto
+import com.example.icerock_t1.auth.data.installationsDto.InstallationsDto
 
 class InstallationsRemoteDataSource(
     private val authApi: AuthApi

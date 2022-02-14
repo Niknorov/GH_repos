@@ -1,7 +1,7 @@
 package com.example.icerock_t1.auth.data
 
-import com.example.icerock_t1.auth.data.instDto.InstallationsDto
-import com.example.icerock_t1.auth.data.reposDto.RepositoriesDto
+import com.example.icerock_t1.auth.data.installationsDto.InstallationsDto
+import com.example.icerock_t1.auth.data.repositoriesDto.RepositoriesDto
 import retrofit2.http.*
 
 interface AuthApi {

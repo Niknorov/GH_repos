@@ -1,9 +1,9 @@
-package com.example.icerock_t1.auth.data.instDto
+package com.example.icerock_t1.auth.data.installationsDto
 
 import com.google.gson.annotations.SerializedName
 
 data class InstallationsDto(
 
-    @SerializedName("total_count") val total_count : Int,
+    @SerializedName("total_count") val totalCount : Int,
     @SerializedName("installations") val installations : List<InstallationDto>
 )

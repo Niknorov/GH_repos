@@ -2,34 +2,34 @@ package com.example.icerock_t1.auth.domain
 
 data class InstallationsModel(
 
-    val total_count: Int,
+    val totalCount: Int,
     val installations: List<InstallationModel>
 )
 
 data class InstallationModel(
 
     val id: Int,
-    val accountDto: AccountModel,
-    val access_tokens_url: String,
-    val repositories_url: String,
-    val html_url: String,
-    val app_id: Int,
-    val target_id: Int,
-    val target_type: String,
-    val permissionsInstModel: PermissionsInstModel,
+    val accountModel: AccountModel,
+    val accessTokensUrl: String,
+    val repositoriesUrl: String,
+    val htmlUrl: String,
+    val appId: Int,
+    val targetId: Int,
+    val targetType: String,
+    val installationPermissionsModel: InstallationPermissionsModel,
     val events: List<String>,
-    val single_file_name: String,
-    val has_multiple_single_files: Boolean,
-    val single_file_paths: List<String>,
-    val repository_selection: String,
-    val created_at: String,
-    val updated_at: String,
-    val app_slug: String,
-    val suspended_at: String,
-    val suspended_by: String
+    val singleFileName: String,
+    val hasMultipleSingleFiles: Boolean,
+    val singleFilePaths: List<String>,
+    val repositorySelection: String,
+    val createdAt: String,
+    val updatedAt: String,
+    val appSlug: String,
+    val suspendedAt: String,
+    val suspendedBy: String
 )
 
-data class PermissionsInstModel(
+data class InstallationPermissionsModel(
     val checks: String,
     val metadata: String,
     val contents: String
@@ -39,21 +39,21 @@ data class AccountModel(
 
     val login: String,
     val id: Int,
-    val node_id: String,
-    val avatar_url: String,
-    val gravatar_id: String,
+    val nodeId: String,
+    val avatarUrl: String,
+    val gravatarId: String,
     val url: String,
-    val html_url: String,
-    val followers_url: String,
-    val following_url: String,
-    val gists_url: String,
-    val starred_url: String,
-    val subscriptions_url: String,
-    val organizations_url: String,
-    val repos_url: String,
-    val events_url: String,
-    val received_events_url: String,
+    val htmlUrl: String,
+    val followersUrl: String,
+    val followingUrl: String,
+    val gistsUrl: String,
+    val starredUrl: String,
+    val subscriptionsUrl: String,
+    val organizationsUrl: String,
+    val reposUrl: String,
+    val eventsUrl: String,
+    val receivedEventsUrl: String,
     val type: String,
-    val site_admin: Boolean
+    val siteAdmin: Boolean
 )
 
