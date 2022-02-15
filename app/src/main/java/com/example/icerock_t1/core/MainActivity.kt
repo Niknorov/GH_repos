@@ -1,7 +1,8 @@
-package com.example.icerock_t1
+package com.example.icerock_t1.core
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.icerock_t1.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
