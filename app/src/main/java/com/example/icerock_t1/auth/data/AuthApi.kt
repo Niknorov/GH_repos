@@ -1,19 +1,15 @@
 package com.example.icerock_t1.auth.data
 
-import com.example.icerock_t1.auth.data.installationsDto.InstallationsDto
 import com.example.icerock_t1.auth.data.repositoriesDto.RepositoriesDto
-import retrofit2.http.*
+import retrofit2.http.GET
+import retrofit2.http.Header
+import retrofit2.http.Path
 
 interface AuthApi {
 
-    @GET(value = "/user/installations")
+    @GET(value = "/user")
     suspend fun loginWithToken(
-        @Header("Authorization") token: String
-    ): List<InstallationsDto>
+        @Header("Authorization") credentials: String
+    ): UserDto
 
-    @GET(value = "/user/installations/{installation_id}/repositories")
-    suspend fun getRepos(
-        @Header("Authorization") token: String,
-        @Path("installation_id") id: Int
-    ): List<RepositoriesDto>
 }

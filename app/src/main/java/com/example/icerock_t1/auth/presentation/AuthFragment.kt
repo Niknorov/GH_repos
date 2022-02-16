@@ -6,23 +6,37 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.icerock_t1.R
+import com.example.icerock_t1.databinding.FragmentAuthBinding
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class AuthFragment : Fragment() {
 
+    private lateinit var binding: FragmentAuthBinding
+    private val viewModel: AuthViewModel by viewModel()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
-        return inflater.inflate(R.layout.fragment_auth, container, false)
+        binding = FragmentAuthBinding.inflate(layoutInflater)
+        return binding.root
     }
 
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        viewModel.installationsLiveData.observe(viewLifecycleOwner) {
+
+        }
+        val user = binding.user.text
+        val token = binding.token.text
+
+        binding.signIn.setOnClickListener {
+            viewModel.launchAuth(user = user.toString(), token = token.toString())
+        }
+    }
 }
