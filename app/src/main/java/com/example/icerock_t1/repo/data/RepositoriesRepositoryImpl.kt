@@ -104,11 +104,13 @@ class RepositoriesRepositoryImpl(
                 pushedAt = it.pushedAt,
                 createdAt = it.createdAt,
                 updatedAt = it.updatedAt,
-                permissionsDto = PermissionsModel(
-                    admin = it.permissionsDto.admin,
-                    push = it.permissionsDto.push,
-                    pull = it.permissionsDto.pull
-                ),
+                permissionsDto = it.permissionsDto?.let {
+                    PermissionsModel(
+                        admin = it.admin,
+                        push = it.push,
+                        pull = it.pull
+                    )
+                },
                 templateRepository = it.templateRepository
             )
         }

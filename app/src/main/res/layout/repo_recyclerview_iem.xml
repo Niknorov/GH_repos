@@ -21,6 +21,7 @@
         tools:text="NameOfRepo" />
 
     <TextView
+        android:id="@+id/language"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="14dp"

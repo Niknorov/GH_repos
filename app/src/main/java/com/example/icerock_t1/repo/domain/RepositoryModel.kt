@@ -9,7 +9,7 @@ data class RepositoryModel(
     val ownerDto: OwnerModel,
     val private: Boolean,
     val htmlUrl: String,
-    val description: String,
+    val description: String?,
     val fork: Boolean,
     val url: String,
     val archiveUrl: String,
@@ -50,10 +50,10 @@ data class RepositoryModel(
     val teamsUrl: String,
     val treesUrl: String,
     val cloneUrl: String,
-    val mirrorUrl: String,
+    val mirrorUrl: String?,
     val hooksUrl: String,
     val svnUrl: String,
-    val homepage: String,
+    val homepage: String?,
     val language: String,
     val forksCount: Int,
     val stargazersCount: Int,
@@ -74,8 +74,8 @@ data class RepositoryModel(
     val pushedAt: String,
     val createdAt: String,
     val updatedAt: String,
-    val permissionsDto: PermissionsModel,
-    val templateRepository: String
+    val permissionsDto: PermissionsModel?,
+    val templateRepository: String?
 )
 
 

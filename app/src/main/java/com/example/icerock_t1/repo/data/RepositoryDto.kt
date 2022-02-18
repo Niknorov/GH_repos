@@ -11,7 +11,7 @@ data class RepositoryDto(
     @SerializedName("owner") val ownerDto: OwnerDto,
     @SerializedName("private") val private: Boolean,
     @SerializedName("html_url") val htmlUrl: String,
-    @SerializedName("description") val description: String,
+    @SerializedName("description") val description: String?,
     @SerializedName("fork") val fork: Boolean,
     @SerializedName("url") val url: String,
     @SerializedName("archive_url") val archiveUrl: String,
@@ -52,10 +52,10 @@ data class RepositoryDto(
     @SerializedName("teams_url") val teamsUrl: String,
     @SerializedName("trees_url") val treesUrl: String,
     @SerializedName("clone_url") val cloneUrl: String,
-    @SerializedName("mirror_url") val mirrorUrl: String,
+    @SerializedName("mirror_url") val mirrorUrl: String?,
     @SerializedName("hooks_url") val hooksUrl: String,
     @SerializedName("svn_url") val svnUrl: String,
-    @SerializedName("homepage") val homepage: String,
+    @SerializedName("homepage") val homepage: String?,
     @SerializedName("language") val language: String,
     @SerializedName("forks_count") val forksCount: Int,
     @SerializedName("stargazers_count") val stargazersCount: Int,
@@ -76,8 +76,8 @@ data class RepositoryDto(
     @SerializedName("pushed_at") val pushedAt: String,
     @SerializedName("created_at") val createdAt: String,
     @SerializedName("updated_at") val updatedAt: String,
-    @SerializedName("permissions") val permissionsDto: PermissionsDto,
-    @SerializedName("template_repository") val templateRepository: String
+    @SerializedName("permissions") val permissionsDto: PermissionsDto?,
+    @SerializedName("template_repository") val templateRepository: String?
 )
 
 
