@@ -9,5 +9,14 @@
         android:id="@+id/authFragment"
         android:name="com.example.icerock_t1.auth.presentation.AuthFragment"
         android:label="fragment_auth"
-        tools:layout="@layout/fragment_auth" />
+        tools:layout="@layout/fragment_auth" >
+        <action
+            android:id="@+id/action_authFragment_to_repoFragment"
+            app:destination="@id/repoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/repoFragment"
+        android:name="com.example.icerock_t1.repo.presenatation.RepoFragment"
+        android:label="RepoFragment"
+        tools:layout="@layout/fragment_repo"/>
 </navigation>
