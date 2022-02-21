@@ -18,10 +18,10 @@ class RepositoriesViewModel(
     private val _repositoriesLiveData = MutableLiveData<List<RepositoryModel>>()
     val repositoriesLiveData: LiveData<List<RepositoryModel>> = _repositoriesLiveData
 
-    fun getRepositories(userName: String) {
+    fun getRepositories() {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
-                _repositoriesLiveData.postValue(getRepositoriesUseCase(userName = userName)!!)
+                _repositoriesLiveData.postValue(getRepositoriesUseCase()!!)
             }
         }
     }

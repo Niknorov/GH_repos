@@ -5,7 +5,7 @@ import com.example.icerock_t1.auth.domain.PlanModel
 import com.example.icerock_t1.auth.domain.UserModel
 
 class AuthRepositoryImpl(
-    private val authRemoteDataSource: AuthRemoteDataSource
+    private val authRemoteDataSource: AuthRemoteDataSource,
 ) : AuthRepository {
 
     override suspend fun performAuth(user: String, token: String): UserModel {

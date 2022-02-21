@@ -9,13 +9,12 @@ import com.example.icerock_t1.repo.presenatation.RepositoriesViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import retrofit2.Retrofit
-import retrofit2.create
 
 val repositoriesModule = module {
     single { createRepositoriesApi(get()) }
     single { RepositoryRemoteDataSource(get()) }
     single<RepositoriesRepository> { return@single RepositoriesRepositoryImpl(get()) }
-    single { GetRepositoriesUseCase(get()) }
+    single { GetRepositoriesUseCase(get(), get()) }
     viewModel { RepositoriesViewModel(get()) }
 }
 

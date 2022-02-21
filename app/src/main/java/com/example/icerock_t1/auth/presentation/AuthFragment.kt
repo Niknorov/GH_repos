@@ -38,8 +38,6 @@ class AuthFragment : Fragment() {
 
         binding.signIn.setOnClickListener {
             viewModel.launchAuth(user = user.toString(), token = token.toString())
-        }
-        binding.signIn.setOnClickListener {
             findNavController().navigate(
                 R.id.action_authFragment_to_repoFragment
             )

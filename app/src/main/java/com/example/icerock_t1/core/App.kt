@@ -4,9 +4,9 @@ import android.app.Application
 import com.example.icerock_t1.auth.di.authModule
 import com.example.icerock_t1.core.di.networkModule
 import com.example.icerock_t1.repo.di.repositoriesModule
+import com.example.icerock_t1.user.di.userModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
-import org.koin.dsl.module
 
 class App : Application() {
 
@@ -19,8 +19,9 @@ class App : Application() {
                 networkModule,
                 authModule,
                 repositoriesModule,
+                userModule,
 
-            )
+                )
         }
     }
 }

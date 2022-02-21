@@ -43,6 +43,6 @@ class RepoFragment : Fragment() {
                 Toast.makeText(context, "Click", Toast.LENGTH_SHORT).show()
             }
         }
-        repositoriesViewModel.getRepositories("niknorov")
+        repositoriesViewModel.getRepositories()
     }
 }
