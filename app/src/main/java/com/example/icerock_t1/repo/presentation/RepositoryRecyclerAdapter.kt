@@ -1,4 +1,4 @@
-package com.example.icerock_t1.repo.presenatation
+package com.example.icerock_t1.repo.presentation
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

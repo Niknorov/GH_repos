@@ -1,4 +1,4 @@
-package com.example.icerock_t1.repo.presenatation
+package com.example.icerock_t1.repo.presentation
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

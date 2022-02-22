@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/repoFragment"
-        android:name="com.example.icerock_t1.repo.presenatation.RepoFragment"
+        android:name="com.example.icerock_t1.repo.presentation.RepoFragment"
         android:label="RepoFragment"
         tools:layout="@layout/fragment_repo"/>
 </navigation>
