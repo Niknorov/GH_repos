@@ -9,7 +9,8 @@ import com.example.icerock_t1.detail.domain.ReadmeModel
 import com.example.icerock_t1.repo.domain.RepositoryModel
 import java.lang.IllegalArgumentException
 
-class DetailRecyclerAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class DetailRecyclerAdapter(private val repositoryDetailItem: List<RepositoryDetailItem>) :
+    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private companion object {
 
