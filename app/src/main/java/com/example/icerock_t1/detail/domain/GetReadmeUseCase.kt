@@ -5,13 +5,11 @@ import com.example.icerock_t1.user.domain.UserRepository
 class GetReadmeUseCase(
     private val readmeRepository: ReadmeRepository,
     private val userRepository: UserRepository,
-    private val repoNameRepository: RepoNameRepository
 ) {
 
-    suspend operator fun invoke(): List<ReadmeModel> {
+    suspend operator fun invoke(repoName: String): List<ReadmeModel> {
 
         val userName = userRepository.getUserName()
-        val repoName = repoNameRepository.getRepoName()
         return readmeRepository.getReadme(userName = userName, repoName = repoName)
     }
 

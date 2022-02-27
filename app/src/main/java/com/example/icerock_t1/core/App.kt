@@ -4,7 +4,6 @@ import android.app.Application
 import com.example.icerock_t1.auth.di.authModule
 import com.example.icerock_t1.core.di.networkModule
 import com.example.icerock_t1.detail.di.readmeModule
-import com.example.icerock_t1.detail.di.repoNameModule
 import com.example.icerock_t1.repo.di.repositoriesModule
 import com.example.icerock_t1.user.di.userModule
 import org.koin.android.ext.koin.androidContext
@@ -22,7 +21,6 @@ class App : Application() {
                 authModule,
                 repositoriesModule,
                 userModule,
-                repoNameModule,
                 readmeModule,
 
                 )

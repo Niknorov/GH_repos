@@ -18,5 +18,14 @@
         android:id="@+id/repoFragment"
         android:name="com.example.icerock_t1.repo.presentation.RepoFragment"
         android:label="RepoFragment"
-        tools:layout="@layout/fragment_repo"/>
+        tools:layout="@layout/fragment_repo">
+        <action
+            android:id="@+id/action_repoFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.example.icerock_t1.detail.presentation.DetailFragment"
+        android:label="fragment_detail"
+        tools:layout="@layout/fragment_detail" />
 </navigation>

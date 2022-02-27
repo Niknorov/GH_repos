@@ -12,7 +12,7 @@ val readmeModule = module {
     single { createReadmeApi(get()) }
     single { ReadmeRemoteDataSource(get()) }
     single<ReadmeRepository> { return@single ReadmeRepositoryImpl(get()) }
-    single { GetReadmeUseCase(get(), get(), get()) }
+    single { GetReadmeUseCase(get(), get()) }
 }
 
 fun createReadmeApi(retrofit: Retrofit): ReadmeApi {
