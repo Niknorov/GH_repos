@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.icerock_t1.databinding.FragmentRepoBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -40,6 +41,9 @@ class RepoFragment : Fragment() {
 
             adapter.onItemClick = {
                 Toast.makeText(context, "Click", Toast.LENGTH_SHORT).show()
+                val repoName = it.name
+                val action = RepoFragmentDirections.actionRepoFragmentToDetailFragment(repoName)
+                findNavController().navigate(action)
             }
         }
         repositoriesViewModel.getRepositories()

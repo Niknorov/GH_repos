@@ -5,43 +5,45 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.icerock_t1.detail.domain.GetReadmeUseCase
-import com.example.icerock_t1.repo.domain.GetRepositoriesUseCase
+import com.example.icerock_t1.detail.domain.GetRepositoryUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class ReadmeViewModel(
     private val getReadmeUseCase: GetReadmeUseCase,
-    private val getRepositoriesUseCase: GetRepositoriesUseCase
+    private val getRepositoryUseCase: GetRepositoryUseCase
 ) : ViewModel() {
 
     private val _readmeLiveData = MutableLiveData<List<RepositoryDetailItem>>()
     val readmeLiveData: LiveData<List<RepositoryDetailItem>> = _readmeLiveData
 
-    fun getReadme(repoName: String) {
+    fun getDetail(repoName: String) {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
                 val readmeModel = getReadmeUseCase(repoName)
-                val readmeItem = readmeModel.map {
+                val readmeItem =
                     RepositoryDetailItem.ReadmeItem(
-                        content = it.content
+                        content = readmeModel.content
                     )
-                }
-                val repositoryModel = getRepositoriesUseCase()
-                val statsItem = repositoryModel.map {
+                val repositoryModel = getRepositoryUseCase(repoName)
+                val statsItem =
                     RepositoryDetailItem.StatsItem(
-                        stargazersCount = it.stargazersCount,
-                        forksCount = it.forksCount,
-                        watchersCount = it.watchersCount,
+                        stargazersCount = repositoryModel.stargazersCount,
+                        forksCount = repositoryModel.forksCount,
+                        watchersCount = repositoryModel.watchersCount,
                         license = "",
-                        url = it.url
+                        url = repositoryModel.url
                     )
-                }
 
-                val repositoryDetailItem: List<RepositoryDetailItem> = readmeItem + statsItem
 
+                val repositoryDetailItem: List<RepositoryDetailItem> = listOf(readmeItem, statsItem)
                 _readmeLiveData.postValue(repositoryDetailItem)
             }
+
         }
+
+
     }
 }
+

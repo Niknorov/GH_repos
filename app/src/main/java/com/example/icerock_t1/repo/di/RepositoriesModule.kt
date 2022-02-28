@@ -2,6 +2,7 @@ package com.example.icerock_t1.repo.di
 
 import com.example.icerock_t1.repo.data.RepositoriesApi
 import com.example.icerock_t1.repo.data.RepositoriesRepositoryImpl
+import com.example.icerock_t1.repo.data.RepositoryConverter
 import com.example.icerock_t1.repo.data.RepositoryRemoteDataSource
 import com.example.icerock_t1.repo.domain.GetRepositoriesUseCase
 import com.example.icerock_t1.repo.domain.RepositoriesRepository
@@ -13,7 +14,8 @@ import retrofit2.Retrofit
 val repositoriesModule = module {
     single { createRepositoriesApi(get()) }
     single { RepositoryRemoteDataSource(get()) }
-    single<RepositoriesRepository> { return@single RepositoriesRepositoryImpl(get()) }
+    single<RepositoriesRepository> { return@single RepositoriesRepositoryImpl(get(), get()) }
+    single { RepositoryConverter() }
     single { GetRepositoriesUseCase(get(), get()) }
     viewModel { RepositoriesViewModel(get()) }
 }

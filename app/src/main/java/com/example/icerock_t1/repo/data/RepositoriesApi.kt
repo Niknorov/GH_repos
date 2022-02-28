@@ -9,4 +9,10 @@ interface RepositoriesApi {
     suspend fun getRepositories(
         @Path("username") userName: String,
     ): List<RepositoryDto>
+
+    @GET(value = "/repos/{owner}/{repo}")
+    suspend fun getRepository(
+        @Path("owner") userName: String,
+        @Path("repo") repoName: String
+    ): RepositoryDto
 }

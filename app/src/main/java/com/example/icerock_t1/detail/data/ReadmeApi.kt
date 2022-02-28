@@ -9,5 +9,5 @@ interface ReadmeApi {
     suspend fun getReadme(
         @Path("owner") userName: String,
         @Path("repo") repoName: String
-    ): List<ReadmeDto>
+    ): ReadmeDto
 }

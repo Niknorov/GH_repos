@@ -7,7 +7,7 @@ class GetReadmeUseCase(
     private val userRepository: UserRepository,
 ) {
 
-    suspend operator fun invoke(repoName: String): List<ReadmeModel> {
+    suspend operator fun invoke(repoName: String): ReadmeModel {
 
         val userName = userRepository.getUserName()
         return readmeRepository.getReadme(userName = userName, repoName = repoName)

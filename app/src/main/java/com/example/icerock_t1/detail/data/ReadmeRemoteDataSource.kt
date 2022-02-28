@@ -4,7 +4,7 @@ class ReadmeRemoteDataSource(
     private val readmeApi: ReadmeApi
 ) {
 
-    suspend fun getReadme(userName: String, repoName: String): List<ReadmeDto> {
+    suspend fun getReadme(userName: String, repoName: String): ReadmeDto {
 
         return readmeApi.getReadme(userName = userName, repoName = repoName)
     }

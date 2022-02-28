@@ -11,27 +11,26 @@ class ReadmeRepositoryImpl(
 ) : ReadmeRepository {
 
 
-    override suspend fun getReadme(userName: String, repoName: String): List<ReadmeModel> {
+    override suspend fun getReadme(userName: String, repoName: String): ReadmeModel{
 
-        return readmeRemoteDataSource.getReadme(userName = userName, repoName = repoName).map {
-            ReadmeModel(
-                type = it.type,
-                encoding = it.encoding,
-                size = it.size,
-                name = it.name,
-                path = it.path,
-                content = it.content,
-                sha = it.sha,
-                url = it.url,
-                gitUrl = it.gitUrl,
-                htmlUrl = it.htmlUrl,
-                downloadUrl = it.downloadUrl,
-                links = LinksModel(
-                    git = it.links.git,
-                    self = it.links.self,
-                    html = it.links.html
-                )
+        val readmeDto = readmeRemoteDataSource.getReadme(userName = userName, repoName = repoName)
+        return ReadmeModel(
+            type = readmeDto.type,
+            encoding = readmeDto.encoding,
+            size = readmeDto.size,
+            name = readmeDto.name,
+            path = readmeDto.path,
+            content = readmeDto.content,
+            sha = readmeDto.sha,
+            url = readmeDto.url,
+            gitUrl = readmeDto.gitUrl,
+            htmlUrl = readmeDto.htmlUrl,
+            downloadUrl = readmeDto.downloadUrl,
+            links = LinksModel(
+                git = readmeDto.links.git,
+                self = readmeDto.links.self,
+                html = readmeDto.links.html
             )
-        }
+        )
     }
 }

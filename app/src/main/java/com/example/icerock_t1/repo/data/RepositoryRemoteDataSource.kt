@@ -8,4 +8,9 @@ class RepositoryRemoteDataSource(
 
         return repositoriesApi.getRepositories(userName = userName)
     }
+
+    suspend fun getRepository(userName: String, repoName: String): RepositoryDto {
+
+        return repositoriesApi.getRepository(userName = userName, repoName = repoName)
+    }
 }
