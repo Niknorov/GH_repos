@@ -26,7 +26,10 @@ class ReadmeViewHolder(
 ) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(readmeItem: RepositoryDetailItem.ReadmeItem) {
-
-        binding.readme.text = readmeItem.content
+        if (readmeItem.content.isNotBlank()) {
+            binding.readme.text = readmeItem.content
+        } else {
+            binding.readme.text = "ReadMe отстутствует"
+        }
     }
 }

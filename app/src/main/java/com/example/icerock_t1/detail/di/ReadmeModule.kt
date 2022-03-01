@@ -6,7 +6,7 @@ import com.example.icerock_t1.detail.data.ReadmeRepositoryImpl
 import com.example.icerock_t1.detail.domain.GetReadmeUseCase
 import com.example.icerock_t1.detail.domain.GetRepositoryUseCase
 import com.example.icerock_t1.detail.domain.ReadmeRepository
-import com.example.icerock_t1.detail.presentation.ReadmeViewModel
+import com.example.icerock_t1.detail.presentation.DetailViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import retrofit2.Retrofit
@@ -17,7 +17,7 @@ val readmeModule = module {
     single<ReadmeRepository> { return@single ReadmeRepositoryImpl(get()) }
     single { GetReadmeUseCase(get(), get()) }
     single { GetRepositoryUseCase(get(), get()) }
-    viewModel { ReadmeViewModel(get(), get()) }
+    viewModel { DetailViewModel(get(), get()) }
 }
 
 fun createReadmeApi(retrofit: Retrofit): ReadmeApi {

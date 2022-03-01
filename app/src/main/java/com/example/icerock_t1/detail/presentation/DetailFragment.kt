@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.icerock_t1.databinding.FragmentDetailBinding
@@ -13,7 +14,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class DetailFragment : Fragment() {
 
     private val args by navArgs<DetailFragmentArgs>()
-    private val readmeViewModel: ReadmeViewModel by viewModel()
+    private val detailViewModel: DetailViewModel by viewModel()
     lateinit var binding: FragmentDetailBinding
 
     override fun onCreateView(
@@ -29,18 +30,26 @@ class DetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         binding.detailRecyclerView.layoutManager = LinearLayoutManager(context)
 
         binding.toolbar.title = args.repositoryName
 
-        readmeViewModel.readmeLiveData.observe(viewLifecycleOwner) {
+        detailViewModel.detailLiveData.observe(viewLifecycleOwner) {
 
-            val adapter = DetailRecyclerAdapter()
-            binding.detailRecyclerView.adapter = adapter
-            adapter.items = it
 
+            when (it) {
+                is DetailUiState.Success -> {
+                    val adapter = DetailRecyclerAdapter()
+                    binding.detailRecyclerView.adapter = adapter
+                    adapter.items = it.detail
+
+                }
+                is DetailUiState.ErrorNetwork -> {
+
+                    Toast.makeText(context, "error", Toast.LENGTH_SHORT).show()
+                }
+            }
         }
-        readmeViewModel.getDetail(args.repositoryName)
+        detailViewModel.getDetail(args.repositoryName)
     }
 }
