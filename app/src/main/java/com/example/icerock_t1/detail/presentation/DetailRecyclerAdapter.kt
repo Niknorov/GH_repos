@@ -9,7 +9,7 @@ import com.example.icerock_t1.detail.domain.ReadmeModel
 import com.example.icerock_t1.repo.domain.RepositoryModel
 import java.lang.IllegalArgumentException
 
-class DetailRecyclerAdapter(private val repositoryDetailItem: List<RepositoryDetailItem>) :
+class DetailRecyclerAdapter() :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private companion object {
@@ -18,7 +18,7 @@ class DetailRecyclerAdapter(private val repositoryDetailItem: List<RepositoryDet
         const val README_VIEW_TYPE = 1
     }
 
-    private var items: List<RepositoryDetailItem> = emptyList()
+    var items: List<RepositoryDetailItem> = emptyList()
         set(value) {
             field = value
             notifyDataSetChanged()

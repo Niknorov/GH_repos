@@ -29,16 +29,18 @@ class DetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.toolbar.title = args.repositoryName
 
         binding.detailRecyclerView.layoutManager = LinearLayoutManager(context)
 
+        binding.toolbar.title = args.repositoryName
+
         readmeViewModel.readmeLiveData.observe(viewLifecycleOwner) {
 
-            val adapter = DetailRecyclerAdapter(it)
+            val adapter = DetailRecyclerAdapter()
             binding.detailRecyclerView.adapter = adapter
-        }
+            adapter.items = it
 
-        readmeViewModel.getDetail(repoName = args.repositoryName)
+        }
+        readmeViewModel.getDetail(args.repositoryName)
     }
 }

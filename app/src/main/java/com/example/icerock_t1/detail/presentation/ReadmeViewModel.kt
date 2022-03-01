@@ -37,7 +37,7 @@ class ReadmeViewModel(
                     )
 
 
-                val repositoryDetailItem: List<RepositoryDetailItem> = listOf(readmeItem, statsItem)
+                val repositoryDetailItem: List<RepositoryDetailItem> = listOf(statsItem, readmeItem)
                 _readmeLiveData.postValue(repositoryDetailItem)
             }
 
