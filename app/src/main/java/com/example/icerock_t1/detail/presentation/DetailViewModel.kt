@@ -51,8 +51,22 @@ class DetailViewModel(
             } catch (socketTimeoutException: SocketTimeoutException) {
                 _detailLiveData.postValue(DetailUiState.ErrorNetwork)
             } catch (httpException: HttpException) {
+
                 if (httpException.code() == 404) {
-                    _detailLiveData.postValue(DetailUiState.ErrorNetwork)
+
+                    val repositoryModel = getRepositoryUseCase(repoName)
+                    val statsItem =
+                        RepositoryDetailItem.StatsItem(
+                            stargazersCount = repositoryModel.stargazersCount,
+                            forksCount = repositoryModel.forksCount,
+                            watchersCount = repositoryModel.watchersCount,
+                            license = "",
+                            url = repositoryModel.url
+                        )
+
+                    val repositoryDetailItem: List<RepositoryDetailItem> =
+                        listOf(statsItem)
+                    _detailLiveData.postValue(DetailUiState.HttpError(repositoryDetailItem))
                 }
 
             }

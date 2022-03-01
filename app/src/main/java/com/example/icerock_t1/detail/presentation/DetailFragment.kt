@@ -37,16 +37,19 @@ class DetailFragment : Fragment() {
         detailViewModel.detailLiveData.observe(viewLifecycleOwner) {
 
 
+            val adapter = DetailRecyclerAdapter()
+            binding.detailRecyclerView.adapter = adapter
+
             when (it) {
                 is DetailUiState.Success -> {
-                    val adapter = DetailRecyclerAdapter()
-                    binding.detailRecyclerView.adapter = adapter
                     adapter.items = it.detail
-
                 }
                 is DetailUiState.ErrorNetwork -> {
 
                     Toast.makeText(context, "error", Toast.LENGTH_SHORT).show()
+                }
+                is DetailUiState.HttpError -> {
+                    adapter.items = it.detail
                 }
             }
         }
