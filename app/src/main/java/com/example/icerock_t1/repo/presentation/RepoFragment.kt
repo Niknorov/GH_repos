@@ -32,19 +32,30 @@ class RepoFragment : Fragment() {
 
         binding.reposRecyclerView.layoutManager = LinearLayoutManager(context)
 
-        repositoriesViewModel.repositoriesLiveData.observe(viewLifecycleOwner) {
+        repositoriesViewModel.repositoriesLiveData.observe(viewLifecycleOwner) { it ->
 
-            val adapter = RepositoryRecyclerAdapter(it)
-            binding.reposRecyclerView.adapter = adapter
+            when (it) {
+                is RepoUiState.Success -> {
+                    val adapter = RepositoryRecyclerAdapter(it.repositories)
+                    binding.reposRecyclerView.adapter = adapter
 
 
-
-            adapter.onItemClick = {
-                Toast.makeText(context, "Click", Toast.LENGTH_SHORT).show()
-                val repoName = it.name
-                val action = RepoFragmentDirections.actionRepoFragmentToDetailFragment(repoName)
-                findNavController().navigate(action)
+                    adapter.onItemClick = {
+                        Toast.makeText(context, "Click", Toast.LENGTH_SHORT).show()
+                        val repoName = it.name
+                        val action =
+                            RepoFragmentDirections.actionRepoFragmentToDetailFragment(repoName)
+                        findNavController().navigate(action)
+                    }
+                }
+                is RepoUiState.ErrorNetwork -> {
+                    Toast.makeText(context, "Error network", Toast.LENGTH_SHORT).show()
+                }
+                is RepoUiState.HttpException -> {
+                    Toast.makeText(context, "404", Toast.LENGTH_SHORT).show()
+                }
             }
+
         }
         repositoriesViewModel.getRepositories()
     }
