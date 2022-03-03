@@ -3,6 +3,7 @@ package com.example.icerock_t1.detail.presentation
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
@@ -59,6 +60,23 @@ class DetailFragment : Fragment() {
 
         binding.toolbar.setNavigationOnClickListener {
             findNavController().navigate(R.id.action_detailFragment_to_repoFragment)
+        }
+
+
+
+        binding.toolbar.setOnMenuItemClickListener {
+            onOptionsItemSelected(it)
+        }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
+
+        R.id.toolbar_Button -> {
+            findNavController().navigate(R.id.action_detailFragment_to_authFragment)
+            true
+        }
+        else -> {
+            super.onOptionsItemSelected(item)
         }
     }
 }

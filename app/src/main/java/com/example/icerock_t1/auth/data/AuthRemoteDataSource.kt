@@ -1,6 +1,5 @@
 package com.example.icerock_t1.auth.data
 
-import android.net.wifi.hotspot2.pps.Credential
 import okhttp3.Credentials
 
 class AuthRemoteDataSource(
