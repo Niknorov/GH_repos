@@ -1,7 +1,6 @@
 package com.example.icerock_t1.repo.data
 
-import com.example.icerock_t1.repo.domain.RepositoriesRepository
-import com.example.icerock_t1.repo.domain.RepositoryModel
+import com.example.icerock_t1.repo.domain.*
 
 class RepositoriesRepositoryImpl(
     private val repositoryRemoteDataSource: RepositoryRemoteDataSource,
@@ -17,7 +16,10 @@ class RepositoriesRepositoryImpl(
 
     override suspend fun getRepository(userName: String, repoName: String): RepositoryModel {
 
-        val repositoryDto = repositoryRemoteDataSource.getRepository(userName, repoName)
+        val repositoryDto =
+            repositoryRemoteDataSource.getRepository(userName = userName, repoName = repoName)
         return repositoryConverter.convert(repositoryDto)
     }
+
+
 }

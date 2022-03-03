@@ -1,13 +1,15 @@
 package com.example.icerock_t1.detail.data
 
-import com.example.icerock_t1.detail.domain.LinksModel
+import com.example.icerock_t1.detail.domain.LinksReadmeModel
 import com.example.icerock_t1.detail.domain.ReadmeModel
 import com.example.icerock_t1.detail.domain.ReadmeRepository
-import com.example.icerock_t1.repo.domain.RepositoriesRepository
-import com.example.icerock_t1.repo.domain.RepositoryModel
+import com.example.icerock_t1.detail.domain.LicenseBaseModel
+import com.example.icerock_t1.detail.domain.LicenseModel
+import com.example.icerock_t1.detail.domain.LinksLicenseModel
 
 class ReadmeRepositoryImpl(
-    private val readmeRemoteDataSource: ReadmeRemoteDataSource
+    private val readmeRemoteDataSource: ReadmeRemoteDataSource,
+
 ) : ReadmeRepository {
 
 
@@ -26,10 +28,41 @@ class ReadmeRepositoryImpl(
             gitUrl = readmeDto.gitUrl,
             htmlUrl = readmeDto.htmlUrl,
             downloadUrl = readmeDto.downloadUrl,
-            links = LinksModel(
-                git = readmeDto.links.git,
-                self = readmeDto.links.self,
-                html = readmeDto.links.html
+            links = LinksReadmeModel(
+                git = readmeDto.linksLicense.git,
+                self = readmeDto.linksLicense.self,
+                html = readmeDto.linksLicense.html
+            )
+        )
+    }
+
+    override suspend fun getLicense(userName: String, repoName: String): LicenseBaseModel {
+
+        val licenseBaseDto =
+            readmeRemoteDataSource.getLicense(userName = userName, repoName = repoName)
+        return LicenseBaseModel(
+            name = licenseBaseDto.name,
+            path = licenseBaseDto.path,
+            size = licenseBaseDto.size,
+            sha = licenseBaseDto.sha,
+            url = licenseBaseDto.url,
+            htmlUrl = licenseBaseDto.htmlUrl,
+            gitUrl = licenseBaseDto.gitUrl,
+            downloadUrl = licenseBaseDto.downloadUrl,
+            type = licenseBaseDto.type,
+            content = licenseBaseDto.content,
+            encoding = licenseBaseDto.encoding,
+            LinksModel = LinksLicenseModel(
+                self = licenseBaseDto.linksDto.self,
+                git = licenseBaseDto.linksDto.git,
+                html = licenseBaseDto.linksDto.html
+            ),
+            licenseModel = LicenseModel(
+                key = licenseBaseDto.licenseDto.key,
+                name = licenseBaseDto.licenseDto.name,
+                spdxId = licenseBaseDto.licenseDto.spdxId,
+                url = licenseBaseDto.licenseDto.url,
+                nodeId = licenseBaseDto.licenseDto.nodeId,
             )
         )
     }

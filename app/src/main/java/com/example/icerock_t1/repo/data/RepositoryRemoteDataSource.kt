@@ -1,5 +1,7 @@
 package com.example.icerock_t1.repo.data
 
+import com.example.icerock_t1.detail.data.LicenseBaseDto
+
 class RepositoryRemoteDataSource(
     private val repositoriesApi: RepositoriesApi
 ) {
@@ -13,4 +15,6 @@ class RepositoryRemoteDataSource(
 
         return repositoriesApi.getRepository(userName = userName, repoName = repoName)
     }
+
+
 }

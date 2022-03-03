@@ -1,7 +1,5 @@
 package com.example.icerock_t1.detail.domain
 
-import com.google.gson.annotations.SerializedName
-
 data class ReadmeModel(
 
     val type: String,
@@ -15,11 +13,11 @@ data class ReadmeModel(
     val gitUrl: String,
     val htmlUrl: String,
     val downloadUrl: String,
-    val links: LinksModel
+    val links: LinksReadmeModel
 
 )
 
-data class LinksModel(
+data class LinksReadmeModel(
 
     val git: String,
     val self: String,

@@ -1,11 +1,16 @@
 package com.example.icerock_t1.detail.data
 
 class ReadmeRemoteDataSource(
-    private val readmeApi: ReadmeApi
+    private val detailApi: DetailApi
 ) {
 
     suspend fun getReadme(userName: String, repoName: String): ReadmeDto {
 
-        return readmeApi.getReadme(userName = userName, repoName = repoName)
+        return detailApi.getReadme(userName = userName, repoName = repoName)
+    }
+
+    suspend fun getLicense(userName: String, repoName: String): LicenseBaseDto {
+
+        return detailApi.getLicense(userName = userName, repoName = repoName)
     }
 }

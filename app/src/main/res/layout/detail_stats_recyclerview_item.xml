@@ -72,7 +72,6 @@
         android:layout_marginTop="34dp"
         android:src="@drawable/ic_star"
         app:layout_constraintEnd_toStartOf="@+id/stars"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/license_icon" />
 

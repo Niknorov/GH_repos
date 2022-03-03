@@ -15,11 +15,11 @@ data class ReadmeDto(
     @SerializedName("git_url") val gitUrl: String,
     @SerializedName("html_url") val htmlUrl: String,
     @SerializedName("download_url") val downloadUrl: String,
-    @SerializedName("_links") val links: LinksDto
+    @SerializedName("_links") val linksLicense: LinksReadmeDto
 
 )
 
-data class LinksDto(
+data class LinksReadmeDto(
 
     @SerializedName("git") val git: String,
     @SerializedName("self") val self: String,

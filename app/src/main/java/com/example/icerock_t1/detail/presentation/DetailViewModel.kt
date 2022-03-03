@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.icerock_t1.detail.domain.GetReadmeUseCase
 import com.example.icerock_t1.detail.domain.GetRepositoryUseCase
+import com.example.icerock_t1.detail.domain.GetLicenseUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -15,7 +16,8 @@ import java.net.UnknownHostException
 
 class DetailViewModel(
     private val getReadmeUseCase: GetReadmeUseCase,
-    private val getRepositoryUseCase: GetRepositoryUseCase
+    private val getRepositoryUseCase: GetRepositoryUseCase,
+    private val getLicenseUseCase: GetLicenseUseCase
 ) : ViewModel() {
 
     private val _detailLiveData = MutableLiveData<DetailUiState>()
@@ -31,12 +33,13 @@ class DetailViewModel(
                             content = readmeModel.content
                         )
                     val repositoryModel = getRepositoryUseCase(repoName)
+                    val licenseModel = getLicenseUseCase(repoName)
                     val statsItem =
                         RepositoryDetailItem.StatsItem(
                             stargazersCount = repositoryModel.stargazersCount,
                             forksCount = repositoryModel.forksCount,
                             watchersCount = repositoryModel.watchersCount,
-                            license = "",
+                            license = licenseModel.name,
                             url = repositoryModel.url
                         )
 
@@ -60,7 +63,7 @@ class DetailViewModel(
                             stargazersCount = repositoryModel.stargazersCount,
                             forksCount = repositoryModel.forksCount,
                             watchersCount = repositoryModel.watchersCount,
-                            license = "",
+                            license = "-/-",
                             url = repositoryModel.url
                         )
 
@@ -72,7 +75,7 @@ class DetailViewModel(
             }
         }
 
-
     }
+
 }
 

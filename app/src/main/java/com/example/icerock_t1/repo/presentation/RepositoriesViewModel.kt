@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.icerock_t1.repo.domain.GetRepositoriesUseCase
-import com.example.icerock_t1.repo.domain.RepositoryModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -40,4 +39,5 @@ class RepositoriesViewModel(
 
         }
     }
+
 }
