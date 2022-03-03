@@ -22,6 +22,9 @@
         <action
             android:id="@+id/action_repoFragment_to_detailFragment"
             app:destination="@id/detailFragment" />
+        <action
+            android:id="@+id/action_repoFragment_to_authFragment"
+            app:destination="@id/authFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailFragment"
@@ -31,5 +34,11 @@
         <argument
             android:name="repositoryName"
             app:argType="string" />
+        <action
+            android:id="@+id/action_detailFragment_to_repoFragment"
+            app:destination="@id/repoFragment" />
+        <action
+            android:id="@+id/action_detailFragment_to_authFragment"
+            app:destination="@id/authFragment" />
     </fragment>
 </navigation>

@@ -6,8 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.icerock_t1.R
 import com.example.icerock_t1.databinding.FragmentDetailBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -54,5 +56,9 @@ class DetailFragment : Fragment() {
             }
         }
         detailViewModel.getDetail(args.repositoryName)
+
+        binding.toolbar.setNavigationOnClickListener {
+            findNavController().navigate(R.id.action_detailFragment_to_repoFragment)
+        }
     }
 }
