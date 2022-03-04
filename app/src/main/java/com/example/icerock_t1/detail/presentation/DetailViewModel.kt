@@ -1,18 +1,22 @@
 package com.example.icerock_t1.detail.presentation
 
+import android.util.Base64
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.icerock_t1.detail.domain.GetLicenseUseCase
 import com.example.icerock_t1.detail.domain.GetReadmeUseCase
 import com.example.icerock_t1.detail.domain.GetRepositoryUseCase
-import com.example.icerock_t1.detail.domain.GetLicenseUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import retrofit2.Converter
 import retrofit2.HttpException
 import java.net.SocketTimeoutException
 import java.net.UnknownHostException
+import java.util.*
+
 
 class DetailViewModel(
     private val getReadmeUseCase: GetReadmeUseCase,
@@ -37,7 +41,8 @@ class DetailViewModel(
 
         return try {
             val readme = getReadmeUseCase(repoName)
-            readme.content
+            Base64.decode(readme.content, Base64.DEFAULT).toString(Charsets.UTF_8)
+
         } catch (httpException: HttpException) {
             ""
         }

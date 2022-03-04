@@ -1,10 +1,10 @@
 package com.example.icerock_t1.detail.presentation
 
+import android.graphics.Color
 import androidx.recyclerview.widget.RecyclerView
+import com.crescentflare.simplemarkdownparser.conversion.SimpleMarkdownConverter
 import com.example.icerock_t1.databinding.DetailReadmeRecyclerviewItemBinding
 import com.example.icerock_t1.databinding.DetailStatsRecyclerviewItemBinding
-import com.example.icerock_t1.detail.domain.ReadmeModel
-import com.example.icerock_t1.repo.domain.RepositoryModel
 
 class StatsViewHolder(
     private val binding: DetailStatsRecyclerviewItemBinding
@@ -27,9 +27,15 @@ class ReadmeViewHolder(
 
     fun bind(readmeItem: RepositoryDetailItem.ReadmeItem) {
         if (readmeItem.content.isNotBlank()) {
-            binding.readme.text = readmeItem.content
+
+            val markdownReadme = readmeItem.content
+            binding.textview.text = SimpleMarkdownConverter.toSpannable(markdownReadme)
+            binding.textview.setTextColor(Color.WHITE)
+
+
         } else {
-            binding.readme.text = "ReadMe отстутствует"
+            binding.textview.text = "ReadMe отстутствует"
+            binding.textview.setTextColor(Color.WHITE)
         }
     }
 }

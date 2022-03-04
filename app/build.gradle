@@ -65,8 +65,13 @@ dependencies {
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
     //koin
     implementation "io.insert-koin:koin-android:3.1.4"
-
     //
     implementation "androidx.security:security-crypto:1.1.0-alpha02"
+    //
+    implementation 'com.github.tiagohm.MarkdownView:library:0.19.0'
+
+    implementation 'com.crescentflare.simplemarkdownparser:SimpleMarkdownParserLib:0.7.1'
+
+
 
 }
