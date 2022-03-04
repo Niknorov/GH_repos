@@ -23,55 +23,53 @@ class DetailViewModel(
     private val _detailLiveData = MutableLiveData<DetailUiState>()
     val detailLiveData: LiveData<DetailUiState> = _detailLiveData
 
+    private suspend fun getLicense(repoName: String): String {
+
+        return try {
+            val license = getLicenseUseCase(repoName)
+            license.name
+        } catch (httpException: HttpException) {
+            "-/-"
+        }
+    }
+
+    private suspend fun getReadme(repoName: String): String {
+
+        return try {
+            val readme = getReadmeUseCase(repoName)
+            readme.content
+        } catch (httpException: HttpException) {
+            ""
+        }
+    }
+
+
     fun getDetail(repoName: String) {
         viewModelScope.launch {
             try {
                 withContext(Dispatchers.IO) {
-                    val readmeModel = getReadmeUseCase(repoName)
+                    val repositoryModel = getRepositoryUseCase(repoName)
                     val readmeItem =
                         RepositoryDetailItem.ReadmeItem(
-                            content = readmeModel.content
+                            content = getReadme(repoName)
                         )
-                    val repositoryModel = getRepositoryUseCase(repoName)
-                    val licenseModel = getLicenseUseCase(repoName)
                     val statsItem =
                         RepositoryDetailItem.StatsItem(
                             stargazersCount = repositoryModel.stargazersCount,
                             forksCount = repositoryModel.forksCount,
                             watchersCount = repositoryModel.watchersCount,
-                            license = licenseModel.name,
+                            license = getLicense(repoName),
                             url = repositoryModel.url
                         )
-
 
                     val repositoryDetailItem: List<RepositoryDetailItem> =
                         listOf(statsItem, readmeItem)
                     _detailLiveData.postValue(DetailUiState.Success(repositoryDetailItem))
                 }
-
             } catch (unknownHostException: UnknownHostException) {
                 _detailLiveData.postValue(DetailUiState.ErrorNetwork)
             } catch (socketTimeoutException: SocketTimeoutException) {
                 _detailLiveData.postValue(DetailUiState.ErrorNetwork)
-            } catch (httpException: HttpException) {
-
-                if (httpException.code() == 404) {
-
-                    val repositoryModel = getRepositoryUseCase(repoName)
-                    val statsItem =
-                        RepositoryDetailItem.StatsItem(
-                            stargazersCount = repositoryModel.stargazersCount,
-                            forksCount = repositoryModel.forksCount,
-                            watchersCount = repositoryModel.watchersCount,
-                            license = "-/-",
-                            url = repositoryModel.url
-                        )
-
-                    val repositoryDetailItem: List<RepositoryDetailItem> =
-                        listOf(statsItem)
-                    _detailLiveData.postValue(DetailUiState.HttpError(repositoryDetailItem))
-                }
-
             }
         }
 

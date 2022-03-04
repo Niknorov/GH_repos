@@ -52,7 +52,8 @@ class DetailFragment : Fragment() {
                     Toast.makeText(context, "error", Toast.LENGTH_SHORT).show()
                 }
                 is DetailUiState.HttpError -> {
-                    adapter.items = it.detail
+                    Toast.makeText(context, "error", Toast.LENGTH_SHORT).show()
+                  //  adapter.items = it.detail
                 }
             }
         }

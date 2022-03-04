@@ -5,6 +5,7 @@ import com.example.icerock_t1.auth.di.authModule
 import com.example.icerock_t1.core.di.networkModule
 import com.example.icerock_t1.detail.di.readmeModule
 import com.example.icerock_t1.repo.di.repositoriesModule
+import com.example.icerock_t1.splash.di.splashModule
 import com.example.icerock_t1.user.di.userModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
@@ -22,8 +23,8 @@ class App : Application() {
                 repositoriesModule,
                 userModule,
                 readmeModule,
-
-                )
+                splashModule,
+            )
         }
     }
 }
