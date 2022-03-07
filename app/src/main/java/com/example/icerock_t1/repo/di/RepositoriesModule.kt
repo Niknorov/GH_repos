@@ -17,7 +17,7 @@ val repositoriesModule = module {
     single<RepositoriesRepository> { return@single RepositoriesRepositoryImpl(get(), get()) }
     single { RepositoryConverter() }
     single { GetRepositoriesUseCase(get(), get()) }
-    viewModel { RepositoriesViewModel(get()) }
+    viewModel { RepositoriesViewModel(get(), get()) }
 }
 
 fun createRepositoriesApi(retrofit: Retrofit): RepositoriesApi {

@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.icerock_t1.repo.domain.GetRepositoriesUseCase
+import com.example.icerock_t1.user.domain.ClearUserUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -13,7 +14,8 @@ import java.net.SocketTimeoutException
 import java.net.UnknownHostException
 
 class RepositoriesViewModel(
-    private val getRepositoriesUseCase: GetRepositoriesUseCase
+    private val getRepositoriesUseCase: GetRepositoriesUseCase,
+    private val clearUserUseCase: ClearUserUseCase
 ) : ViewModel() {
 
 
@@ -38,6 +40,10 @@ class RepositoriesViewModel(
             }
 
         }
+    }
+
+    fun onExit() {
+        clearUserUseCase()
     }
 
 }

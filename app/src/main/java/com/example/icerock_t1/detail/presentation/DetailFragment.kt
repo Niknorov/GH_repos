@@ -53,7 +53,6 @@ class DetailFragment : Fragment() {
                 }
                 is DetailUiState.HttpError -> {
                     Toast.makeText(context, "error", Toast.LENGTH_SHORT).show()
-                  //  adapter.items = it.detail
                 }
             }
         }
@@ -73,6 +72,7 @@ class DetailFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
 
         R.id.toolbar_Button -> {
+            detailViewModel.onExit()
             findNavController().navigate(R.id.action_detailFragment_to_authFragment)
             true
         }

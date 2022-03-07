@@ -19,7 +19,7 @@ val readmeModule = module {
     single { GetReadmeUseCase(get(), get()) }
     single { GetRepositoryUseCase(get(), get()) }
     single { GetLicenseUseCase(get(), get()) }
-    viewModel { DetailViewModel(get(), get(), get()) }
+    viewModel { DetailViewModel(get(), get(), get(), get()) }
 }
 
 fun createReadmeApi(retrofit: Retrofit): DetailApi {

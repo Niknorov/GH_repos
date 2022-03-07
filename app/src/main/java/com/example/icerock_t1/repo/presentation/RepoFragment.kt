@@ -70,6 +70,7 @@ class RepoFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
 
         R.id.toolbar_Button -> {
+            repositoriesViewModel.onExit()
             findNavController().navigate(R.id.action_repoFragment_to_authFragment)
             true
         }
@@ -77,4 +78,4 @@ class RepoFragment : Fragment() {
             super.onOptionsItemSelected(item)
         }
     }
-    }
+}

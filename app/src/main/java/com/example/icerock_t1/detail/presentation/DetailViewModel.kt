@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.icerock_t1.detail.domain.GetLicenseUseCase
 import com.example.icerock_t1.detail.domain.GetReadmeUseCase
 import com.example.icerock_t1.detail.domain.GetRepositoryUseCase
+import com.example.icerock_t1.user.domain.ClearUserUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -21,7 +22,8 @@ import java.util.*
 class DetailViewModel(
     private val getReadmeUseCase: GetReadmeUseCase,
     private val getRepositoryUseCase: GetRepositoryUseCase,
-    private val getLicenseUseCase: GetLicenseUseCase
+    private val getLicenseUseCase: GetLicenseUseCase,
+    private val clearUserUseCase: ClearUserUseCase
 ) : ViewModel() {
 
     private val _detailLiveData = MutableLiveData<DetailUiState>()
@@ -78,6 +80,10 @@ class DetailViewModel(
             }
         }
 
+    }
+
+    fun onExit() {
+        clearUserUseCase()
     }
 
 }
