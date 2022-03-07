@@ -54,7 +54,7 @@ data class RepositoryModel(
     val hooksUrl: String,
     val svnUrl: String,
     val homepage: String?,
-    val language: String,
+    val language: String?,
     val forksCount: Int,
     val stargazersCount: Int,
     val watchersCount: Int,

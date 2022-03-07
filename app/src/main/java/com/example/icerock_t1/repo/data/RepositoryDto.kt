@@ -56,7 +56,7 @@ data class RepositoryDto(
     @SerializedName("hooks_url") val hooksUrl: String,
     @SerializedName("svn_url") val svnUrl: String,
     @SerializedName("homepage") val homepage: String?,
-    @SerializedName("language") val language: String,
+    @SerializedName("language") val language: String?,
     @SerializedName("forks_count") val forksCount: Int,
     @SerializedName("stargazers_count") val stargazersCount: Int,
     @SerializedName("watchers_count") val watchersCount: Int,

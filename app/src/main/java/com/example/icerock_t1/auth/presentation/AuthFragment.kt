@@ -1,6 +1,7 @@
 package com.example.icerock_t1.auth.presentation
 
 import android.content.Context
+import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,6 +12,9 @@ import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.example.icerock_t1.R
 import com.example.icerock_t1.databinding.FragmentAuthBinding
+import com.github.razir.progressbutton.bindProgressButton
+import com.github.razir.progressbutton.hideProgress
+import com.github.razir.progressbutton.showProgress
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
@@ -32,14 +36,18 @@ class AuthFragment : Fragment() {
     private fun requestAuth() {
         if (binding.user.editText?.text?.isBlank() == true) {
             binding.user.error = "Invalid login"
+
         } else if (binding.token.editText?.text?.isBlank() == true) {
             binding.token.error = "Invalid token"
         } else {
             val user = binding.user.editText?.text
             val token = binding.token.editText?.text
+            binding.signIn.showProgress {
+                progressColor = Color.WHITE
+            }
             viewModel.launchAuth(user = user.toString(), token = token.toString())
-
         }
+        binding.signIn.hideProgress(R.string.sign_in)
     }
 
     private fun View.hideKeyboard() {
@@ -76,17 +84,17 @@ class AuthFragment : Fragment() {
                     Toast.makeText(context, "Unauthorized", Toast.LENGTH_SHORT).show()
                 }
                 is AuthState.UserOrTokenError -> {
-
                     Toast.makeText(context, "Invalid user or token", Toast.LENGTH_SHORT).show()
                 }
             }
-
+            binding.signIn.hideProgress(R.string.sign_in)
         }
 
-
+        bindProgressButton(binding.signIn)
         binding.signIn.setOnClickListener {
             requestAuth()
             it.hideKeyboard()
         }
+
     }
 }

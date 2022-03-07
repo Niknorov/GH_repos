@@ -69,6 +69,8 @@ dependencies {
     implementation "androidx.security:security-crypto:1.1.0-alpha02"
     //markdown parser
     implementation 'com.crescentflare.simplemarkdownparser:SimpleMarkdownParserLib:0.7.1'
+    //progress button
+    implementation 'com.github.razir.progressbutton:progressbutton:2.1.0'
 
 
 }
