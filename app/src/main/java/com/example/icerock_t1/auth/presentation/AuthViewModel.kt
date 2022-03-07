@@ -44,7 +44,7 @@ class AuthViewModel(
                     if (httpException.code() == 304) {
                         _installationsLiveData.postValue(AuthState.HttpException)
                     } else if (httpException.code() == 401) {
-                        _installationsLiveData.postValue(AuthState.HttpException)
+                        _installationsLiveData.postValue(AuthState.UserOrTokenError)
                     } else if (httpException.code() == 403) {
                         _installationsLiveData.postValue(AuthState.HttpException)
                     } else if (httpException.code() == 404) {

@@ -8,4 +8,5 @@ sealed class AuthState {
     object Forbidden : AuthState()
     object ErrorNetwork : AuthState()
     object HttpException: AuthState()
+    object UserOrTokenError: AuthState()
 }

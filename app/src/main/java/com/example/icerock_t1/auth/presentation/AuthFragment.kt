@@ -1,10 +1,12 @@
 package com.example.icerock_t1.auth.presentation
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.example.icerock_t1.R
@@ -27,6 +29,25 @@ class AuthFragment : Fragment() {
         return binding.root
     }
 
+    private fun requestAuth() {
+        if (binding.user.editText?.text?.isBlank() == true) {
+            binding.user.error = "Invalid login"
+        } else if (binding.token.editText?.text?.isBlank() == true) {
+            binding.token.error = "Invalid token"
+        } else {
+            val user = binding.user.editText?.text
+            val token = binding.token.editText?.text
+            viewModel.launchAuth(user = user.toString(), token = token.toString())
+
+        }
+    }
+
+    private fun View.hideKeyboard() {
+        val inputManager =
+            context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputManager.hideSoftInputFromWindow(windowToken, 0)
+    }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -35,7 +56,9 @@ class AuthFragment : Fragment() {
 
             when (it) {
                 is AuthState.Ok -> {
-
+                    findNavController().navigate(
+                        R.id.action_authFragment_to_repoFragment
+                    )
                 }
                 is AuthState.HttpException -> {
                     Toast.makeText(context, "Error network", Toast.LENGTH_SHORT).show()
@@ -52,18 +75,18 @@ class AuthFragment : Fragment() {
                 is AuthState.Unauthorized -> {
                     Toast.makeText(context, "Unauthorized", Toast.LENGTH_SHORT).show()
                 }
+                is AuthState.UserOrTokenError -> {
+
+                    Toast.makeText(context, "Invalid user or token", Toast.LENGTH_SHORT).show()
+                }
             }
 
         }
 
 
         binding.signIn.setOnClickListener {
-            val user = binding.user.text
-            val token = binding.token.text
-            viewModel.launchAuth(user = user.toString(), token = token.toString())
-            findNavController().navigate(
-                R.id.action_authFragment_to_repoFragment
-            )
+            requestAuth()
+            it.hideKeyboard()
         }
     }
 }
