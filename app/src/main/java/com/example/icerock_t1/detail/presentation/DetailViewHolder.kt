@@ -1,6 +1,7 @@
 package com.example.icerock_t1.detail.presentation
 
 import android.graphics.Color
+import android.text.method.LinkMovementMethod
 import androidx.recyclerview.widget.RecyclerView
 import com.crescentflare.simplemarkdownparser.conversion.SimpleMarkdownConverter
 import com.example.icerock_t1.databinding.DetailReadmeRecyclerviewItemBinding

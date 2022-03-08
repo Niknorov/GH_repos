@@ -43,7 +43,6 @@ class RepoFragment : Fragment() {
 
 
                     adapter.onItemClick = {
-                        Toast.makeText(context, "Click", Toast.LENGTH_SHORT).show()
                         val repoName = it.name
                         val action =
                             RepoFragmentDirections.actionRepoFragmentToDetailFragment(repoName)
