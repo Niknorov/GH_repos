@@ -1,8 +1,8 @@
 package com.example.icerock_t1.repo.data
 
-import com.example.icerock_t1.detail.data.LicenseBaseDto
+import javax.inject.Inject
 
-class RepositoryRemoteDataSource(
+class RepositoryRemoteDataSource @Inject constructor(
     private val repositoriesApi: RepositoriesApi
 ) {
 

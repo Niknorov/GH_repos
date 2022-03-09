@@ -3,8 +3,9 @@ package com.example.icerock_t1.repo.data
 import com.example.icerock_t1.repo.domain.OwnerModel
 import com.example.icerock_t1.repo.domain.PermissionsModel
 import com.example.icerock_t1.repo.domain.RepositoryModel
+import javax.inject.Inject
 
-class RepositoryConverter {
+class RepositoryConverter @Inject constructor (){
 
     fun convert(repositoryDto: RepositoryDto): RepositoryModel {
 

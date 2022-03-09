@@ -3,8 +3,9 @@ package com.example.icerock_t1.auth.data
 import com.example.icerock_t1.auth.domain.AuthRepository
 import com.example.icerock_t1.auth.domain.PlanModel
 import com.example.icerock_t1.auth.domain.UserModel
+import javax.inject.Inject
 
-class AuthRepositoryImpl(
+class AuthRepositoryImpl @Inject constructor(
     private val authRemoteDataSource: AuthRemoteDataSource,
 ) : AuthRepository {
 

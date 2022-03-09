@@ -9,19 +9,20 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.icerock_t1.R
 import com.example.icerock_t1.databinding.FragmentAuthBinding
 import com.github.razir.progressbutton.bindProgressButton
 import com.github.razir.progressbutton.hideProgress
 import com.github.razir.progressbutton.showProgress
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class AuthFragment : Fragment() {
 
     private lateinit var binding: FragmentAuthBinding
-    private val viewModel: AuthViewModel by viewModel()
+    private val viewModel: AuthViewModel by viewModels()
 
 
     override fun onCreateView(

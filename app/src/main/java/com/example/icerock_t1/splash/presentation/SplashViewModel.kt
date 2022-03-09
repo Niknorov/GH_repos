@@ -5,8 +5,11 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.icerock_t1.auth.domain.PerformAuthUseCase
 import com.example.icerock_t1.splash.domain.DetermineUserAuthorizedUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class SplashViewModel(
+@HiltViewModel
+class SplashViewModel @Inject constructor(
     private val determineUserAuthorizedUseCase: DetermineUserAuthorizedUseCase
 ) : ViewModel() {
 

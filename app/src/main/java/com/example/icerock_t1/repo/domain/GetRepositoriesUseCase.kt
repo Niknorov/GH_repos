@@ -1,8 +1,9 @@
 package com.example.icerock_t1.repo.domain
 
 import com.example.icerock_t1.user.domain.UserRepository
+import javax.inject.Inject
 
-class GetRepositoriesUseCase(
+class GetRepositoriesUseCase @Inject constructor(
     private val repositoriesRepository: RepositoriesRepository,
     private val userRepository: UserRepository
 ) {

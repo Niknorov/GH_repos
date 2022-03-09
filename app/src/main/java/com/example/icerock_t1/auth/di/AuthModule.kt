@@ -1,24 +1,35 @@
 package com.example.icerock_t1.auth.di
 
-import com.example.icerock_t1.auth.data.*
+import com.example.icerock_t1.auth.data.AuthApi
+import com.example.icerock_t1.auth.data.AuthRemoteDataSource
+import com.example.icerock_t1.auth.data.AuthRepositoryImpl
 import com.example.icerock_t1.auth.domain.AuthRepository
-import com.example.icerock_t1.auth.domain.PerformAuthUseCase
-import com.example.icerock_t1.auth.presentation.AuthViewModel
-import org.koin.androidx.viewmodel.dsl.viewModel
-import org.koin.dsl.module
+import com.example.icerock_t1.core.di.NetworkModule
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
+import javax.inject.Singleton
 
-val authModule = module {
-    single { createAuthApi(get()) }
-    single { AuthRemoteDataSource(get()) }
-    single<AuthRepository> { return@single AuthRepositoryImpl(get()) }
-    single { PerformAuthUseCase(get(), get()) }
-    viewModel { AuthViewModel(get()) }
+
+@Module(includes = [NetworkModule::class])
+@InstallIn(SingletonComponent::class)
+class AuthModule {
+
+    @Singleton
+    @Provides
+    fun createAuthApi(retrofit: Retrofit): AuthApi {
+        return retrofit.create(AuthApi::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun provideAuthRepository(authRemoteDataSource: AuthRemoteDataSource): AuthRepository {
+        return AuthRepositoryImpl(authRemoteDataSource)
+    }
 }
 
-fun createAuthApi(retrofit: Retrofit): AuthApi {
 
-    return retrofit.create(AuthApi::class.java)
-}
 
 

@@ -1,8 +1,9 @@
 package com.example.icerock_t1.repo.data
 
 import com.example.icerock_t1.repo.domain.*
+import javax.inject.Inject
 
-class RepositoriesRepositoryImpl(
+class RepositoriesRepositoryImpl @Inject constructor(
     private val repositoryRemoteDataSource: RepositoryRemoteDataSource,
     private val repositoryConverter: RepositoryConverter
 ) : RepositoriesRepository {

@@ -6,8 +6,9 @@ import com.example.icerock_t1.detail.domain.ReadmeRepository
 import com.example.icerock_t1.detail.domain.LicenseBaseModel
 import com.example.icerock_t1.detail.domain.LicenseModel
 import com.example.icerock_t1.detail.domain.LinksLicenseModel
+import javax.inject.Inject
 
-class ReadmeRepositoryImpl(
+class ReadmeRepositoryImpl @Inject constructor(
     private val readmeRemoteDataSource: ReadmeRemoteDataSource,
 
 ) : ReadmeRepository {

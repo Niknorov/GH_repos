@@ -1,6 +1,8 @@
 package com.example.icerock_t1.detail.data
 
-class ReadmeRemoteDataSource(
+import javax.inject.Inject
+
+class ReadmeRemoteDataSource @Inject constructor(
     private val detailApi: DetailApi
 ) {
 

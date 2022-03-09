@@ -4,8 +4,10 @@ import android.content.Context
 import androidx.core.content.edit
 import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKey
+import dagger.hilt.android.qualifiers.ApplicationContext
+import javax.inject.Inject
 
-class UserLocalDataSource(context: Context) {
+class UserLocalDataSource @Inject constructor (@ApplicationContext context: Context) {
 
     private val masterKeyAlias = MasterKey.Builder(context, MasterKey.DEFAULT_MASTER_KEY_ALIAS)
         .setKeyScheme(MasterKey.KeyScheme.AES256_GCM)
@@ -22,7 +24,7 @@ class UserLocalDataSource(context: Context) {
 
     fun setUserName(userName: String) {
 
-        sharedPreferences.edit ()
+        sharedPreferences.edit()
             .putString("userName", userName)
             .apply()
 

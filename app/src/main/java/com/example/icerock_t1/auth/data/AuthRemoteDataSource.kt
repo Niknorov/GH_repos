@@ -1,8 +1,9 @@
 package com.example.icerock_t1.auth.data
 
 import okhttp3.Credentials
+import javax.inject.Inject
 
-class AuthRemoteDataSource(
+class AuthRemoteDataSource @Inject constructor(
     private val authApi: AuthApi
 ) {
 

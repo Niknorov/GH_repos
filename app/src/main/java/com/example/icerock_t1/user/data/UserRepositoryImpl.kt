@@ -1,8 +1,9 @@
 package com.example.icerock_t1.user.data
 
 import com.example.icerock_t1.user.domain.UserRepository
+import javax.inject.Inject
 
-class UserRepositoryImpl(
+class UserRepositoryImpl @Inject constructor(
     private val userLocalDataSource: UserLocalDataSource
 ) : UserRepository {
 

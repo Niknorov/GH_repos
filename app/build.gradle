@@ -3,6 +3,7 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-kapt'
     id 'androidx.navigation.safeargs'
+    id 'dagger.hilt.android.plugin'
 }
 
 android {
@@ -64,13 +65,15 @@ dependencies {
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
     //koin
-    implementation "io.insert-koin:koin-android:3.1.4"
+    //implementation "io.insert-koin:koin-android:3.1.4"
     //
     implementation "androidx.security:security-crypto:1.1.0-alpha02"
     //markdown parser
     implementation 'com.crescentflare.simplemarkdownparser:SimpleMarkdownParserLib:0.7.1'
     //progress button
     implementation 'com.github.razir.progressbutton:progressbutton:2.1.0'
-
+    //hilt
+    implementation 'com.google.dagger:hilt-android:2.37'
+    kapt 'com.google.dagger:hilt-compiler:2.37'
 
 }

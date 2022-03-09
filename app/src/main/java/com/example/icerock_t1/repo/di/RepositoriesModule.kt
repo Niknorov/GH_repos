@@ -1,25 +1,35 @@
 package com.example.icerock_t1.repo.di
 
+import com.example.icerock_t1.core.di.NetworkModule
 import com.example.icerock_t1.repo.data.RepositoriesApi
 import com.example.icerock_t1.repo.data.RepositoriesRepositoryImpl
 import com.example.icerock_t1.repo.data.RepositoryConverter
 import com.example.icerock_t1.repo.data.RepositoryRemoteDataSource
-import com.example.icerock_t1.repo.domain.GetRepositoriesUseCase
 import com.example.icerock_t1.repo.domain.RepositoriesRepository
-import com.example.icerock_t1.repo.presentation.RepositoriesViewModel
-import org.koin.androidx.viewmodel.dsl.viewModel
-import org.koin.dsl.module
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
+import javax.inject.Singleton
 
-val repositoriesModule = module {
-    single { createRepositoriesApi(get()) }
-    single { RepositoryRemoteDataSource(get()) }
-    single<RepositoriesRepository> { return@single RepositoriesRepositoryImpl(get(), get()) }
-    single { RepositoryConverter() }
-    single { GetRepositoriesUseCase(get(), get()) }
-    viewModel { RepositoriesViewModel(get(), get()) }
+@Module(includes = [NetworkModule::class])
+@InstallIn(SingletonComponent::class)
+class RepositoriesModule {
+
+    @Singleton
+    @Provides
+    fun createRepositoriesApi(retrofit: Retrofit): RepositoriesApi {
+        return retrofit.create(RepositoriesApi::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun provideRepositoriesRepository(
+        repositoryRemoteDataSource: RepositoryRemoteDataSource,
+        repositoryConverter: RepositoryConverter
+    ): RepositoriesRepository {
+        return RepositoriesRepositoryImpl(repositoryRemoteDataSource, repositoryConverter)
+    }
 }
 
-fun createRepositoriesApi(retrofit: Retrofit): RepositoriesApi {
-    return retrofit.create(RepositoriesApi::class.java)
-}

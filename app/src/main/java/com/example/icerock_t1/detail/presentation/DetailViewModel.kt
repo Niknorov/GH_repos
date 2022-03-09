@@ -9,6 +9,7 @@ import com.example.icerock_t1.detail.domain.GetLicenseUseCase
 import com.example.icerock_t1.detail.domain.GetReadmeUseCase
 import com.example.icerock_t1.detail.domain.GetRepositoryUseCase
 import com.example.icerock_t1.user.domain.ClearUserUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -17,9 +18,10 @@ import retrofit2.HttpException
 import java.net.SocketTimeoutException
 import java.net.UnknownHostException
 import java.util.*
+import javax.inject.Inject
 
-
-class DetailViewModel(
+@HiltViewModel
+class DetailViewModel @Inject constructor(
     private val getReadmeUseCase: GetReadmeUseCase,
     private val getRepositoryUseCase: GetRepositoryUseCase,
     private val getLicenseUseCase: GetLicenseUseCase,

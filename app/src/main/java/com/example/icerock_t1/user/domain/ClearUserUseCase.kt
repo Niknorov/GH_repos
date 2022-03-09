@@ -1,6 +1,8 @@
 package com.example.icerock_t1.user.domain
 
-class ClearUserUseCase(
+import javax.inject.Inject
+
+class ClearUserUseCase @Inject constructor(
     private val userRepository: UserRepository
 ) {
 
