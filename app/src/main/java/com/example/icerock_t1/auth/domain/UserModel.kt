@@ -25,7 +25,7 @@ data class UserModel(
     val blog: String,
     val location: String?,
     val email: String?,
-    val hireable: Boolean,
+    val hireable: Boolean?,
     val bio: String?,
     val twitterUsername: String?,
     val publicRepos: Int,
