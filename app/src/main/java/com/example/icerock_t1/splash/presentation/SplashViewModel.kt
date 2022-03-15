@@ -3,7 +3,6 @@ package com.example.icerock_t1.splash.presentation
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.icerock_t1.auth.domain.PerformAuthUseCase
 import com.example.icerock_t1.splash.domain.DetermineUserAuthorizedUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject

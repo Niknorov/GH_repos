@@ -27,7 +27,7 @@ data class UserDto (
     @SerialName("name") val name: String?,
     @SerialName("company") val company: String?,
     @SerialName("blog") val blog: String,
-    @SerialName("location") val location: String,
+    @SerialName("location") val location: String?,
     @SerialName("email") val email: String?,
     @SerialName("hireable") val hireable: Boolean,
     @SerialName("bio") val bio: String?,

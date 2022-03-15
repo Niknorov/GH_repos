@@ -5,9 +5,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.icerock_t1.databinding.DetailReadmeRecyclerviewItemBinding
 import com.example.icerock_t1.databinding.DetailStatsRecyclerviewItemBinding
-import com.example.icerock_t1.detail.domain.ReadmeModel
-import com.example.icerock_t1.repo.domain.RepositoryModel
-import java.lang.IllegalArgumentException
 
 class DetailRecyclerAdapter() :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {

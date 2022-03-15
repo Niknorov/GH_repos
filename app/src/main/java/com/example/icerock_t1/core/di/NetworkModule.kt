@@ -35,9 +35,6 @@ object NetworkModule {
     ): Retrofit {
 
         val contentType = "application/json".toMediaType()
-        // val gson = GsonBuilder()
-        //     .setLenient()
-        //     .create()
 
         return Retrofit.Builder()
             .addConverterFactory(Json { ignoreUnknownKeys = true }.asConverterFactory(contentType))
