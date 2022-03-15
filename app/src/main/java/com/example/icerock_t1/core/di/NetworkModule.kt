@@ -1,14 +1,15 @@
 package com.example.icerock_t1.core.di
 
-import com.google.gson.GsonBuilder
+import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import kotlinx.serialization.json.Json
+import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
 
@@ -33,12 +34,13 @@ object NetworkModule {
         okHttpClient: OkHttpClient
     ): Retrofit {
 
-        val gson = GsonBuilder()
-            .setLenient()
-            .create()
+        val contentType = "application/json".toMediaType()
+        // val gson = GsonBuilder()
+        //     .setLenient()
+        //     .create()
 
         return Retrofit.Builder()
-            .addConverterFactory(GsonConverterFactory.create(gson))
+            .addConverterFactory(Json { ignoreUnknownKeys = true }.asConverterFactory(contentType))
             .client(okHttpClient)
             .baseUrl("https://api.github.com")
             .build()

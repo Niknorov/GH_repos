@@ -1,55 +1,57 @@
 package com.example.icerock_t1.auth.data
 
-import com.google.gson.annotations.SerializedName
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
-data class UserDto(
+@Serializable
+data class UserDto (
 
-    @SerializedName("login") val login: String,
-    @SerializedName("id") val id: Int,
-    @SerializedName("node_id") val nodeId: String,
-    @SerializedName("avatar_url") val avatarUrl: String,
-    @SerializedName("gravatar_id") val gravatarId: String,
-    @SerializedName("url") val url: String,
-    @SerializedName("html_url") val htmlUrl: String,
-    @SerializedName("followers_url") val followersUrl: String,
-    @SerializedName("following_url") val followingUrl: String,
-    @SerializedName("gists_url") val gistsUrl: String,
-    @SerializedName("starred_url") val starredUrl: String,
-    @SerializedName("subscriptions_url") val subscriptionsUrl: String,
-    @SerializedName("organizations_url") val organizationsUrl: String,
-    @SerializedName("repos_url") val reposUrl: String,
-    @SerializedName("events_url") val eventsUrl: String,
-    @SerializedName("received_events_url") val receivedEventsUrl: String,
-    @SerializedName("type") val type: String,
-    @SerializedName("site_admin") val siteAdmin: Boolean,
-    @SerializedName("name") val name: String?,
-    @SerializedName("company") val company: String?,
-    @SerializedName("blog") val blog: String,
-    @SerializedName("location") val location: String,
-    @SerializedName("email") val email: String?,
-    @SerializedName("hireable") val hireable: Boolean,
-    @SerializedName("bio") val bio: String?,
-    @SerializedName("twitter_username") val twitterUsername: String?,
-    @SerializedName("public_repos") val publicRepos: Int,
-    @SerializedName("public_gists") val publicGists: Int,
-    @SerializedName("followers") val followers: Int,
-    @SerializedName("following") val following: Int,
-    @SerializedName("created_at") val createdAt: String,
-    @SerializedName("updated_at") val updatedAt: String,
-    @SerializedName("private_gists") val privateGists: Int,
-    @SerializedName("total_private_repos") val totalPrivateRepos: Int,
-    @SerializedName("owned_private_repos") val ownedPrivateRepos: Int,
-    @SerializedName("disk_usage") val diskUsage: Int,
-    @SerializedName("collaborators") val collaborators: Int,
-    @SerializedName("two_factor_authentication") val twoFactorAuthentication: Boolean,
-    @SerializedName("plan") val plan: Plan?
+    @SerialName("login") val login: String,
+    @SerialName("id") val id: Int,
+    @SerialName("node_id") val nodeId: String,
+    @SerialName("avatar_url") val avatarUrl: String,
+    @SerialName("gravatar_id") val gravatarId: String,
+    @SerialName("url") val url: String,
+    @SerialName("html_url") val htmlUrl: String,
+    @SerialName("followers_url") val followersUrl: String,
+    @SerialName("following_url") val followingUrl: String,
+    @SerialName("gists_url") val gistsUrl: String,
+    @SerialName("starred_url") val starredUrl: String,
+    @SerialName("subscriptions_url") val subscriptionsUrl: String,
+    @SerialName("organizations_url") val organizationsUrl: String,
+    @SerialName("repos_url") val reposUrl: String,
+    @SerialName("events_url") val eventsUrl: String,
+    @SerialName("received_events_url") val receivedEventsUrl: String,
+    @SerialName("type") val type: String,
+    @SerialName("site_admin") val siteAdmin: Boolean,
+    @SerialName("name") val name: String?,
+    @SerialName("company") val company: String?,
+    @SerialName("blog") val blog: String,
+    @SerialName("location") val location: String,
+    @SerialName("email") val email: String?,
+    @SerialName("hireable") val hireable: Boolean,
+    @SerialName("bio") val bio: String?,
+    @SerialName("twitter_username") val twitterUsername: String?,
+    @SerialName("public_repos") val publicRepos: Int,
+    @SerialName("public_gists") val publicGists: Int,
+    @SerialName("followers") val followers: Int,
+    @SerialName("following") val following: Int,
+    @SerialName("created_at") val createdAt: String,
+    @SerialName("updated_at") val updatedAt: String,
+    @SerialName("private_gists") val privateGists: Int,
+    @SerialName("total_private_repos") val totalPrivateRepos: Int,
+    @SerialName("owned_private_repos") val ownedPrivateRepos: Int,
+    @SerialName("disk_usage") val diskUsage: Int,
+    @SerialName("collaborators") val collaborators: Int,
+    @SerialName("two_factor_authentication") val twoFactorAuthentication: Boolean,
+    @SerialName("plan") val plan: Plan?
 )
 
-
+@Serializable
 data class Plan(
 
-    @SerializedName("name") val name: String,
-    @SerializedName("space") val space: Int,
-    @SerializedName("private_repos") val privateRepos: Int,
-    @SerializedName("collaborators") val collaborators: Int
+    @SerialName("name") val name: String,
+    @SerialName("space") val space: Int,
+    @SerialName("private_repos") val privateRepos: Int,
+    @SerialName("collaborators") val collaborators: Int
 )
