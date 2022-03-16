@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/DangO/AndroidStudioProjects/IceRock_T1/app/src/main/res/drawable/ic_empty_repo.xml" value="0.310126582278481" />
         <entry key="..\:/Users/DangO/AndroidStudioProjects/IceRock_T1/app/src/main/res/drawable/ic_license.xml" value="0.310126582278481" />
         <entry key="..\:/Users/DangO/AndroidStudioProjects/IceRock_T1/app/src/main/res/drawable/ic_link.xml" value="0.310126582278481" />
         <entry key="..\:/Users/DangO/AndroidStudioProjects/IceRock_T1/app/src/main/res/drawable/ic_logo.xml" value="0.310126582278481" />
@@ -14,6 +15,8 @@
         <entry key="..\:/Users/DangO/AndroidStudioProjects/IceRock_T1/app/src/main/res/layout/fragment_auth.xml" value="0.25" />
         <entry key="..\:/Users/DangO/AndroidStudioProjects/IceRock_T1/app/src/main/res/layout/fragment_detail.xml" value="0.33" />
         <entry key="..\:/Users/DangO/AndroidStudioProjects/IceRock_T1/app/src/main/res/layout/fragment_repo.xml" value="0.30085470085470084" />
+        <entry key="..\:/Users/DangO/AndroidStudioProjects/IceRock_T1/app/src/main/res/layout/fragment_repo_empty.xml" value="0.30085470085470084" />
+        <entry key="..\:/Users/DangO/AndroidStudioProjects/IceRock_T1/app/src/main/res/layout/fragment_repo_error.xml" value="0.30085470085470084" />
         <entry key="..\:/Users/DangO/AndroidStudioProjects/IceRock_T1/app/src/main/res/layout/fragment_splash.xml" value="0.30085470085470084" />
         <entry key="..\:/Users/DangO/AndroidStudioProjects/IceRock_T1/app/src/main/res/layout/repo_recyclerview_iem.xml" value="0.30085470085470084" />
         <entry key="..\:/Users/DangO/AndroidStudioProjects/IceRock_T1/app/src/main/res/menu/repositories_toolbar_menu.xml" value="0.30085470085470084" />

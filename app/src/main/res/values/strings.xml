@@ -7,4 +7,10 @@
     <string name="user_name">User name</string>
     <string name="personal_access_token">Personal access token</string>
     <string name="license">License</string>
+    <string name="retry">Retry</string>
+    <string name="refresh">Refresh</string>
+    <string name="connection_error">Connection error</string>
+    <string name="check_connection">Check your Internet connection</string>
+    <string name="empty">Empty</string>
+    <string name="no_repositories">No repositories at the moment</string>
 </resources>
