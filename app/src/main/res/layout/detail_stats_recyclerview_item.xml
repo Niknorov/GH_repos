@@ -47,7 +47,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
-        android:text="License"
+        android:text="@string/license"
         android:textColor="@color/white"
         android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@id/license_icon"
