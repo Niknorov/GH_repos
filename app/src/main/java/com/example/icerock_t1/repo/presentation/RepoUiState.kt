@@ -5,7 +5,8 @@ import com.example.icerock_t1.repo.domain.RepositoryModel
 sealed class RepoUiState {
 
     class Success(val repositories: List<RepositoryModel>) : RepoUiState()
-
+    object EmptyRepos : RepoUiState()
     object ErrorNetwork : RepoUiState()
     object HttpException : RepoUiState()
+
 }

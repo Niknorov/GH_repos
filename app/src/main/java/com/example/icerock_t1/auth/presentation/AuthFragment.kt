@@ -64,27 +64,27 @@ class AuthFragment : Fragment() {
         viewModel.installationsLiveData.observe(viewLifecycleOwner) {
 
             when (it) {
-                is AuthState.Ok -> {
+                is AuthUiState.Ok -> {
                     findNavController().navigate(
                         R.id.action_authFragment_to_repoFragment
                     )
                 }
-                is AuthState.HttpException -> {
+                is AuthUiState.HttpException -> {
                     Toast.makeText(context, "Error network", Toast.LENGTH_SHORT).show()
                 }
-                is AuthState.ErrorNetwork -> {
+                is AuthUiState.ErrorNetwork -> {
                     Toast.makeText(context, "Error network", Toast.LENGTH_SHORT).show()
                 }
-                is AuthState.Forbidden -> {
+                is AuthUiState.Forbidden -> {
                     Toast.makeText(context, "Forbidden", Toast.LENGTH_SHORT).show()
                 }
-                is AuthState.NotModified -> {
+                is AuthUiState.NotModified -> {
                     Toast.makeText(context, "Not Modified", Toast.LENGTH_SHORT).show()
                 }
-                is AuthState.Unauthorized -> {
+                is AuthUiState.Unauthorized -> {
                     Toast.makeText(context, "Unauthorized", Toast.LENGTH_SHORT).show()
                 }
-                is AuthState.UserOrTokenError -> {
+                is AuthUiState.UserOrTokenError -> {
                     Toast.makeText(context, "Invalid user or token", Toast.LENGTH_SHORT).show()
                 }
             }

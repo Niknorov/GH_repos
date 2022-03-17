@@ -30,7 +30,11 @@ class RepositoriesViewModel @Inject constructor(
 
             try {
                 withContext(Dispatchers.IO) {
-                    _repositoriesLiveData.postValue(RepoUiState.Success(getRepositoriesUseCase()))
+                    val repositoriesList = getRepositoriesUseCase()
+                    _repositoriesLiveData.postValue(RepoUiState.Success(repositoriesList))
+                    if (repositoriesList.isEmpty()) {
+                        _repositoriesLiveData.postValue(RepoUiState.EmptyRepos)
+                    }
                 }
             } catch (unknownHostException: UnknownHostException) {
                 _repositoriesLiveData.postValue(RepoUiState.ErrorNetwork)

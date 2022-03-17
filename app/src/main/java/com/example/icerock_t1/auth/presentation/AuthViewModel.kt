@@ -19,8 +19,8 @@ class AuthViewModel @Inject constructor(
     private val performAuthUseCase: PerformAuthUseCase,
 ) : ViewModel() {
 
-    private val _installationsLiveData = MutableLiveData<AuthState>()
-    val installationsLiveData: LiveData<AuthState> = _installationsLiveData
+    private val _installationsLiveData = MutableLiveData<AuthUiState>()
+    val installationsLiveData: LiveData<AuthUiState> = _installationsLiveData
 
 
     fun launchAuth(user: String, token: String) {
@@ -32,25 +32,25 @@ class AuthViewModel @Inject constructor(
                 try {
                     withContext(Dispatchers.IO) {
                         performAuthUseCase(user, token)
-                        _installationsLiveData.postValue(AuthState.Ok)
+                        _installationsLiveData.postValue(AuthUiState.Ok)
 
                     }
                 } catch (unknownHostException: UnknownHostException) {
 
-                    _installationsLiveData.postValue(AuthState.ErrorNetwork)
+                    _installationsLiveData.postValue(AuthUiState.ErrorNetwork)
                 } catch (socketTimeoutException: SocketTimeoutException) {
 
-                    _installationsLiveData.postValue(AuthState.ErrorNetwork)
+                    _installationsLiveData.postValue(AuthUiState.ErrorNetwork)
                 } catch (httpException: HttpException) {
 
                     if (httpException.code() == 304) {
-                        _installationsLiveData.postValue(AuthState.HttpException)
+                        _installationsLiveData.postValue(AuthUiState.HttpException)
                     } else if (httpException.code() == 401) {
-                        _installationsLiveData.postValue(AuthState.UserOrTokenError)
+                        _installationsLiveData.postValue(AuthUiState.UserOrTokenError)
                     } else if (httpException.code() == 403) {
-                        _installationsLiveData.postValue(AuthState.HttpException)
+                        _installationsLiveData.postValue(AuthUiState.HttpException)
                     } else if (httpException.code() == 404) {
-                        _installationsLiveData.postValue(AuthState.HttpException)
+                        _installationsLiveData.postValue(AuthUiState.HttpException)
                     }
                 }
             }

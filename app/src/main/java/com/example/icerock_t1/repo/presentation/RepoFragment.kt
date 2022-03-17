@@ -49,18 +49,63 @@ class RepoFragment : Fragment() {
                             RepoFragmentDirections.actionRepoFragmentToDetailFragment(repoName)
                         findNavController().navigate(action)
                     }
+                    binding.reposRecyclerView.visibility = View.VISIBLE
+                    binding.connectionImage.visibility = View.GONE
+                    binding.connectionErrorTV.visibility = View.GONE
+                    binding.checkConnectionTV.visibility = View.GONE
+                    binding.retry.visibility = View.GONE
+                    binding.emptyImage.visibility = View.GONE
+                    binding.emptyTV.visibility = View.GONE
+                    binding.noRepositoriesTV.visibility = View.GONE
+                    binding.refresh.visibility = View.GONE
                 }
                 is RepoUiState.ErrorNetwork -> {
                     Toast.makeText(context, "Error network", Toast.LENGTH_SHORT).show()
+                    binding.reposRecyclerView.visibility = View.GONE
+                    binding.connectionImage.visibility = View.VISIBLE
+                    binding.connectionErrorTV.visibility = View.VISIBLE
+                    binding.checkConnectionTV.visibility = View.VISIBLE
+                    binding.retry.visibility = View.VISIBLE
+                    binding.emptyImage.visibility = View.GONE
+                    binding.emptyTV.visibility = View.GONE
+                    binding.noRepositoriesTV.visibility = View.GONE
+                    binding.refresh.visibility = View.GONE
                 }
                 is RepoUiState.HttpException -> {
-                    Toast.makeText(context, "404", Toast.LENGTH_SHORT).show()
+                    binding.reposRecyclerView.visibility = View.GONE
+                    binding.connectionImage.visibility = View.VISIBLE
+                    binding.connectionErrorTV.visibility = View.VISIBLE
+                    binding.checkConnectionTV.visibility = View.VISIBLE
+                    binding.retry.visibility = View.VISIBLE
+                    binding.emptyImage.visibility = View.GONE
+                    binding.emptyTV.visibility = View.GONE
+                    binding.noRepositoriesTV.visibility = View.GONE
+                    binding.refresh.visibility = View.GONE
+                }
+                is RepoUiState.EmptyRepos -> {
+                    binding.reposRecyclerView.visibility = View.GONE
+                    binding.emptyImage.visibility = View.VISIBLE
+                    binding.emptyTV.visibility = View.VISIBLE
+                    binding.noRepositoriesTV.visibility = View.VISIBLE
+                    binding.refresh.visibility = View.VISIBLE
+                    binding.connectionImage.visibility = View.GONE
+                    binding.connectionErrorTV.visibility = View.GONE
+                    binding.checkConnectionTV.visibility = View.GONE
+                    binding.retry.visibility = View.GONE
+
                 }
             }
 
         }
         repositoriesViewModel.getRepositories()
 
+        binding.retry.setOnClickListener {
+            repositoriesViewModel.getRepositories()
+        }
+
+        binding.refresh.setOnClickListener {
+            repositoriesViewModel.getRepositories()
+        }
 
         binding.toolbar.setOnMenuItemClickListener {
             onOptionsItemSelected(it)

@@ -3,7 +3,7 @@ package com.example.icerock_t1.repo.presentation
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.icerock_t1.databinding.RepoRecyclerviewIemBinding
+import com.example.icerock_t1.databinding.RepoRecyclerviewItemBinding
 import com.example.icerock_t1.repo.domain.RepositoryModel
 
 class RepositoryRecyclerAdapter(private val repositories: List<RepositoryModel>) :
@@ -11,7 +11,7 @@ class RepositoryRecyclerAdapter(private val repositories: List<RepositoryModel>)
 
     var onItemClick: ((RepositoryModel) -> Unit)? = null
 
-    inner class RepositoryViewHolder(private val binding: RepoRecyclerviewIemBinding) :
+    inner class RepositoryViewHolder(private val binding: RepoRecyclerviewItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(repositoryModel: RepositoryModel) {
@@ -26,7 +26,7 @@ class RepositoryRecyclerAdapter(private val repositories: List<RepositoryModel>)
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RepositoryViewHolder {
 
         val binding =
-            RepoRecyclerviewIemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            RepoRecyclerviewItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return RepositoryViewHolder(binding)
     }
 

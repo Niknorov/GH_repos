@@ -13,6 +13,12 @@
         <action
             android:id="@+id/action_authFragment_to_repoFragment"
             app:destination="@id/repoFragment" />
+        <action
+            android:id="@+id/action_authFragment_to_repoEmptyFragment"
+            app:destination="@id/repoEmptyFragment" />
+        <action
+            android:id="@+id/action_authFragment_to_repoErrorFragment"
+            app:destination="@id/repoErrorFragment" />
     </fragment>
     <fragment
         android:id="@+id/repoFragment"
@@ -29,6 +35,9 @@
         <action
             android:id="@+id/action_repoFragment_to_authFragment"
             app:destination="@id/authFragment" />
+        <action
+            android:id="@+id/action_repoFragment_to_repoErrorFragment"
+            app:destination="@id/repoErrorFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailFragment"
@@ -61,4 +70,14 @@
             android:id="@+id/action_splashFragment_to_repoFragment"
             app:destination="@id/repoFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/repoErrorFragment"
+        android:name="com.example.icerock_t1.repo.presentation.RepoErrorFragment"
+        android:label="fragment_repo_error"
+        tools:layout="@layout/fragment_repo_error" />
+    <fragment
+        android:id="@+id/repoEmptyFragment"
+        android:name="com.example.icerock_t1.repo.presentation.RepoEmptyFragment"
+        android:label="fragment_repo_empty"
+        tools:layout="@layout/fragment_repo_empty" />
 </navigation>
