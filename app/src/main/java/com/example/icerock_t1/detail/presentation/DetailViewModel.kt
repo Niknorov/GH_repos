@@ -41,25 +41,20 @@ class DetailViewModel @Inject constructor(
 
     private suspend fun getReadme(repoName: String): String {
 
-        return try {
-            val readme = getReadmeUseCase(repoName)
-            Base64.decode(readme.content, Base64.DEFAULT).toString(Charsets.UTF_8)
 
-        } catch (httpException: HttpException) {
-            ""
-        }
+        val readme = getReadmeUseCase(repoName)
+        return Base64.decode(readme.content, Base64.DEFAULT).toString(Charsets.UTF_8)
+
     }
 
 
     fun getDetail(repoName: String) {
+        _detailLiveData.postValue(DetailUiState.Progress)
         viewModelScope.launch {
             try {
                 withContext(Dispatchers.IO) {
                     val repositoryModel = getRepositoryUseCase(repoName)
-                    val readmeItem =
-                        RepositoryDetailItem.ReadmeItem(
-                            content = getReadme(repoName)
-                        )
+                    var repositoryDetailItem: List<RepositoryDetailItem>
                     val statsItem =
                         RepositoryDetailItem.StatsItem(
                             stargazersCount = repositoryModel.stargazersCount,
@@ -68,9 +63,24 @@ class DetailViewModel @Inject constructor(
                             license = getLicense(repoName),
                             url = repositoryModel.url
                         )
+                    repositoryDetailItem = listOf(statsItem)
+                    try {
+                        val readmeItem =
+                            RepositoryDetailItem.ReadmeItem(
+                                content = getReadme(repoName)
+                            )
+                        repositoryDetailItem = listOf(statsItem, readmeItem)
+                        _detailLiveData.postValue(DetailUiState.Success(repositoryDetailItem))
+                    } catch (unknownHostException: UnknownHostException) {
+                        _detailLiveData.postValue(DetailUiState.ReadmeErrorNetwork)
+                    } catch (socketTimeoutException: SocketTimeoutException) {
+                        _detailLiveData.postValue(DetailUiState.ReadmeErrorNetwork)
+                    } catch (httpException: HttpException) {
+                        _detailLiveData.postValue(DetailUiState.ReadmeHttpError)
+                    }
 
-                    val repositoryDetailItem: List<RepositoryDetailItem> =
-                        listOf(statsItem, readmeItem)
+
+
                     _detailLiveData.postValue(DetailUiState.Success(repositoryDetailItem))
                 }
             } catch (unknownHostException: UnknownHostException) {

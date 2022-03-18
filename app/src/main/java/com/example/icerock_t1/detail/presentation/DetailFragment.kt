@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -47,16 +46,51 @@ class DetailFragment : Fragment() {
 
             when (it) {
                 is DetailUiState.Success -> {
+                    binding.detailRecyclerView.visibility = View.VISIBLE
+                    binding.connectionImage.visibility = View.GONE
+                    binding.connectionErrorTV.visibility = View.GONE
+                    binding.checkConnectionTV.visibility = View.GONE
+                    binding.retry.visibility = View.GONE
                     adapter.items = it.detail
                 }
                 is DetailUiState.ErrorNetwork -> {
+                    binding.detailRecyclerView.visibility = View.GONE
+                    binding.connectionImage.visibility = View.VISIBLE
+                    binding.connectionErrorTV.visibility = View.VISIBLE
+                    binding.checkConnectionTV.visibility = View.VISIBLE
+                    binding.retry.visibility = View.VISIBLE
 
-                    Toast.makeText(context, "error", Toast.LENGTH_SHORT).show()
                 }
                 is DetailUiState.HttpError -> {
-                    Toast.makeText(context, "error", Toast.LENGTH_SHORT).show()
+                    binding.detailRecyclerView.visibility = View.GONE
+                    binding.connectionImage.visibility = View.VISIBLE
+                    binding.connectionErrorTV.visibility = View.VISIBLE
+                    binding.checkConnectionTV.visibility = View.VISIBLE
+                    binding.retry.visibility = View.VISIBLE
+                }
+                is DetailUiState.ReadmeErrorNetwork -> {
+                    binding.detailRecyclerView.visibility = View.VISIBLE
+                    binding.connectionImage.visibility = View.VISIBLE
+                    binding.connectionErrorTV.visibility = View.VISIBLE
+                    binding.checkConnectionTV.visibility = View.VISIBLE
+                    binding.retry.visibility = View.VISIBLE
+
+                }
+                is DetailUiState.ReadmeHttpError -> {
+                    binding.detailRecyclerView.visibility = View.VISIBLE
+                    binding.connectionImage.visibility = View.VISIBLE
+                    binding.connectionErrorTV.visibility = View.VISIBLE
+                    binding.checkConnectionTV.visibility = View.VISIBLE
+                    binding.retry.visibility = View.VISIBLE
+
+                }
+                is DetailUiState.Progress -> {
+
                 }
             }
+        }
+        binding.retry.setOnClickListener {
+            detailViewModel.getDetail(args.repositoryName)
         }
         detailViewModel.getDetail(args.repositoryName)
 
