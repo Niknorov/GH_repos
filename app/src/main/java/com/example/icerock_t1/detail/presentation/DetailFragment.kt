@@ -69,6 +69,7 @@ class DetailFragment : Fragment() {
                     binding.retry.visibility = View.VISIBLE
                 }
                 is DetailUiState.ReadmeErrorNetwork -> {
+                    adapter.items = it.detail
                     binding.detailRecyclerView.visibility = View.VISIBLE
                     binding.connectionImage.visibility = View.VISIBLE
                     binding.connectionErrorTV.visibility = View.VISIBLE

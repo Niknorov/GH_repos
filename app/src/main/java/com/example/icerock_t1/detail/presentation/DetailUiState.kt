@@ -4,8 +4,8 @@ sealed class DetailUiState {
 
     class Success(val detail: List<RepositoryDetailItem>) : DetailUiState()
     object ErrorNetwork : DetailUiState()
-    class HttpError(val detail: List<RepositoryDetailItem>) : DetailUiState()
-    object Progress: DetailUiState()
-    object ReadmeErrorNetwork: DetailUiState()
-    object ReadmeHttpError: DetailUiState()
+    object HttpError : DetailUiState()
+    object Progress : DetailUiState()
+    class ReadmeErrorNetwork(val detail: List<RepositoryDetailItem>) : DetailUiState()
+    class ReadmeHttpError(val detail: List<RepositoryDetailItem>) : DetailUiState()
 }

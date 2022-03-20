@@ -38,12 +38,12 @@ data class UserDto (
     @SerialName("following") val following: Int,
     @SerialName("created_at") val createdAt: String,
     @SerialName("updated_at") val updatedAt: String,
-    @SerialName("private_gists") val privateGists: Int,
-    @SerialName("total_private_repos") val totalPrivateRepos: Int,
-    @SerialName("owned_private_repos") val ownedPrivateRepos: Int,
-    @SerialName("disk_usage") val diskUsage: Int,
-    @SerialName("collaborators") val collaborators: Int,
-    @SerialName("two_factor_authentication") val twoFactorAuthentication: Boolean,
+    @SerialName("private_gists") val privateGists: Int?= null,
+    @SerialName("total_private_repos") val totalPrivateRepos: Int?= null,
+    @SerialName("owned_private_repos") val ownedPrivateRepos: Int?= null,
+    @SerialName("disk_usage") val diskUsage: Int?= null,
+    @SerialName("collaborators") val collaborators: Int?= null,
+    @SerialName("two_factor_authentication") val twoFactorAuthentication: Boolean?= null,
     @SerialName("plan") val plan: Plan?
 )
 

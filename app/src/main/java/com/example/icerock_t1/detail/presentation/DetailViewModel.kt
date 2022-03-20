@@ -29,6 +29,7 @@ class DetailViewModel @Inject constructor(
     private val _detailLiveData = MutableLiveData<DetailUiState>()
     val detailLiveData: LiveData<DetailUiState> = _detailLiveData
 
+
     private suspend fun getLicense(repoName: String): String {
 
         return try {
@@ -63,7 +64,6 @@ class DetailViewModel @Inject constructor(
                             license = getLicense(repoName),
                             url = repositoryModel.url
                         )
-                    repositoryDetailItem = listOf(statsItem)
                     try {
                         val readmeItem =
                             RepositoryDetailItem.ReadmeItem(
@@ -72,21 +72,23 @@ class DetailViewModel @Inject constructor(
                         repositoryDetailItem = listOf(statsItem, readmeItem)
                         _detailLiveData.postValue(DetailUiState.Success(repositoryDetailItem))
                     } catch (unknownHostException: UnknownHostException) {
-                        _detailLiveData.postValue(DetailUiState.ReadmeErrorNetwork)
+                        repositoryDetailItem = listOf(statsItem)
+                        _detailLiveData.postValue(DetailUiState.ReadmeErrorNetwork (repositoryDetailItem))
                     } catch (socketTimeoutException: SocketTimeoutException) {
-                        _detailLiveData.postValue(DetailUiState.ReadmeErrorNetwork)
+                        repositoryDetailItem = listOf(statsItem)
+                        _detailLiveData.postValue(DetailUiState.ReadmeErrorNetwork(repositoryDetailItem))
                     } catch (httpException: HttpException) {
-                        _detailLiveData.postValue(DetailUiState.ReadmeHttpError)
+                        repositoryDetailItem = listOf(statsItem)
+                        _detailLiveData.postValue(DetailUiState.ReadmeHttpError(repositoryDetailItem))
                     }
 
-
-
-                    _detailLiveData.postValue(DetailUiState.Success(repositoryDetailItem))
                 }
             } catch (unknownHostException: UnknownHostException) {
                 _detailLiveData.postValue(DetailUiState.ErrorNetwork)
             } catch (socketTimeoutException: SocketTimeoutException) {
                 _detailLiveData.postValue(DetailUiState.ErrorNetwork)
+            } catch (httpException: HttpException) {
+                _detailLiveData.postValue(DetailUiState.HttpError)
             }
         }
 

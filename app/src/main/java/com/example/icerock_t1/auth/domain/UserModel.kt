@@ -34,12 +34,12 @@ data class UserModel(
     val following: Int,
     val createdAt: String,
     val updatedAt: String,
-    val privateGists: Int,
-    val totalPrivateRepos: Int,
-    val ownedPrivateRepos: Int,
-    val diskUsage: Int,
-    val collaborators: Int,
-    val twoFactorAuthentication: Boolean,
+    val privateGists: Int?,
+    val totalPrivateRepos: Int?,
+    val ownedPrivateRepos: Int?,
+    val diskUsage: Int?,
+    val collaborators: Int?,
+    val twoFactorAuthentication: Boolean?,
     val plan: PlanModel?
 )
 
