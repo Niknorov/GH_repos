@@ -44,7 +44,7 @@ data class UserDto (
     @SerialName("disk_usage") val diskUsage: Int?= null,
     @SerialName("collaborators") val collaborators: Int?= null,
     @SerialName("two_factor_authentication") val twoFactorAuthentication: Boolean?= null,
-    @SerialName("plan") val plan: Plan?
+    @SerialName("plan") val plan: Plan? = null
 )
 
 @Serializable
