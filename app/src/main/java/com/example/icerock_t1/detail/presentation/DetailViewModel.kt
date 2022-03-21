@@ -50,7 +50,6 @@ class DetailViewModel @Inject constructor(
 
 
     fun getDetail(repoName: String) {
-        _detailLiveData.postValue(DetailUiState.Progress)
         viewModelScope.launch {
             try {
                 withContext(Dispatchers.IO) {
@@ -65,6 +64,7 @@ class DetailViewModel @Inject constructor(
                             url = repositoryModel.url
                         )
                     try {
+                        _detailLiveData.postValue(DetailUiState.Progress)
                         val readmeItem =
                             RepositoryDetailItem.ReadmeItem(
                                 content = getReadme(repoName)
@@ -78,8 +78,10 @@ class DetailViewModel @Inject constructor(
                         repositoryDetailItem = listOf(statsItem)
                         _detailLiveData.postValue(DetailUiState.ReadmeErrorNetwork(repositoryDetailItem))
                     } catch (httpException: HttpException) {
-                        repositoryDetailItem = listOf(statsItem)
-                        _detailLiveData.postValue(DetailUiState.ReadmeHttpError(repositoryDetailItem))
+                        if (httpException.code() == 404) {
+                            repositoryDetailItem = listOf(statsItem)
+                            _detailLiveData.postValue(DetailUiState.ReadmeHttpError(repositoryDetailItem))
+                        }
                     }
 
                 }

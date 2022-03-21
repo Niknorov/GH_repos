@@ -46,12 +46,13 @@ class DetailFragment : Fragment() {
 
             when (it) {
                 is DetailUiState.Success -> {
+                    adapter.items = it.detail
                     binding.detailRecyclerView.visibility = View.VISIBLE
                     binding.connectionImage.visibility = View.GONE
                     binding.connectionErrorTV.visibility = View.GONE
                     binding.checkConnectionTV.visibility = View.GONE
                     binding.retry.visibility = View.GONE
-                    adapter.items = it.detail
+                    binding.progressBar.visibility = View.GONE
                 }
                 is DetailUiState.ErrorNetwork -> {
                     binding.detailRecyclerView.visibility = View.GONE
@@ -59,6 +60,7 @@ class DetailFragment : Fragment() {
                     binding.connectionErrorTV.visibility = View.VISIBLE
                     binding.checkConnectionTV.visibility = View.VISIBLE
                     binding.retry.visibility = View.VISIBLE
+                    binding.progressBar.visibility = View.GONE
 
                 }
                 is DetailUiState.HttpError -> {
@@ -67,6 +69,7 @@ class DetailFragment : Fragment() {
                     binding.connectionErrorTV.visibility = View.VISIBLE
                     binding.checkConnectionTV.visibility = View.VISIBLE
                     binding.retry.visibility = View.VISIBLE
+                    binding.progressBar.visibility = View.GONE
                 }
                 is DetailUiState.ReadmeErrorNetwork -> {
                     adapter.items = it.detail
@@ -75,17 +78,26 @@ class DetailFragment : Fragment() {
                     binding.connectionErrorTV.visibility = View.VISIBLE
                     binding.checkConnectionTV.visibility = View.VISIBLE
                     binding.retry.visibility = View.VISIBLE
+                    binding.progressBar.visibility = View.GONE
 
                 }
                 is DetailUiState.ReadmeHttpError -> {
+                    adapter.items = it.detail
                     binding.detailRecyclerView.visibility = View.VISIBLE
                     binding.connectionImage.visibility = View.VISIBLE
                     binding.connectionErrorTV.visibility = View.VISIBLE
                     binding.checkConnectionTV.visibility = View.VISIBLE
                     binding.retry.visibility = View.VISIBLE
+                    binding.progressBar.visibility = View.GONE
 
                 }
                 is DetailUiState.Progress -> {
+                    binding.detailRecyclerView.visibility = View.VISIBLE
+                    binding.connectionImage.visibility = View.GONE
+                    binding.connectionErrorTV.visibility = View.GONE
+                    binding.checkConnectionTV.visibility = View.GONE
+                    binding.retry.visibility = View.GONE
+                    binding.progressBar.visibility = View.VISIBLE
 
                 }
             }
