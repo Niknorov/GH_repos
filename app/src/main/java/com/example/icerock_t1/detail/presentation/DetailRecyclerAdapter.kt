@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.icerock_t1.databinding.DetailReadmeRecyclerviewItemBinding
 import com.example.icerock_t1.databinding.DetailStatsRecyclerviewItemBinding
 
-class DetailRecyclerAdapter() :
+class DetailRecyclerAdapter :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private companion object {

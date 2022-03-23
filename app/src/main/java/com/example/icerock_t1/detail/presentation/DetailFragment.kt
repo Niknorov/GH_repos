@@ -19,7 +19,7 @@ class DetailFragment : Fragment() {
 
     private val args by navArgs<DetailFragmentArgs>()
     private val detailViewModel: DetailViewModel by viewModels()
-    lateinit var binding: FragmentDetailBinding
+    private lateinit var binding: FragmentDetailBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
