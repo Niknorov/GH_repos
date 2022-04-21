@@ -4,8 +4,8 @@ dependencyResolutionManagement {
         google()
         mavenCentral()
         jcenter() // Warning: this repository is going to shut down soon
-        maven { url "https://jitpack.io" }
+        maven ( url = "https://jitpack.io" )
     }
 }
 rootProject.name = "IceRock_T1"
-include ':app'
+include (":app")
