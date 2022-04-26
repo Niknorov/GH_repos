@@ -9,4 +9,6 @@ sealed class AuthUiState {
     object ErrorNetwork : AuthUiState()
     object HttpException: AuthUiState()
     object UserOrTokenError: AuthUiState()
+    object UserNameError: AuthUiState()
+    object TokenError: AuthUiState()
 }

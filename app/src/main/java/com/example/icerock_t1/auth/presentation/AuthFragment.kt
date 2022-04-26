@@ -3,11 +3,14 @@ package com.example.icerock_t1.auth.presentation
 import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -24,6 +27,38 @@ class AuthFragment : Fragment() {
     private lateinit var binding: FragmentAuthBinding
     private val viewModel: AuthViewModel by viewModels()
 
+    private fun requestAuth() {
+        viewModel._tokenLiveData.observe(viewLifecycleOwner) {
+            when (it) {
+                is AuthUiState.TokenError -> {
+                    binding.token.error = context?.getString(R.string.invalid_values)
+                }
+            }
+        }
+        viewModel._userNameLiveData.observe(viewLifecycleOwner) {
+            when (it) {
+                is AuthUiState.UserNameError -> {
+                    binding.user.error = context?.getString(R.string.invalid_values)
+                }
+            }
+        }
+        val user = binding.user.editText?.text
+        val token = binding.token.editText?.text
+        binding.signIn.showProgress {
+            progressColor = Color.WHITE
+        }
+        viewModel.launchAuth(user = user.toString(), token = token.toString())
+
+        binding.signIn.hideProgress(R.string.sign_in)
+    }
+
+
+
+    private fun View.hideKeyboard() {
+        val inputManager =
+            context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputManager.hideSoftInputFromWindow(windowToken, 0)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,29 +67,6 @@ class AuthFragment : Fragment() {
 
         binding = FragmentAuthBinding.inflate(layoutInflater)
         return binding.root
-    }
-
-    private fun requestAuth() {
-        if (binding.user.editText?.text?.isBlank() == true) {
-            binding.user.error = "Invalid login"
-
-        } else if (binding.token.editText?.text?.isBlank() == true) {
-            binding.token.error = "Invalid token"
-        } else {
-            val user = binding.user.editText?.text
-            val token = binding.token.editText?.text
-            binding.signIn.showProgress {
-                progressColor = Color.WHITE
-            }
-            viewModel.launchAuth(user = user.toString(), token = token.toString())
-        }
-        binding.signIn.hideProgress(R.string.sign_in)
-    }
-
-    private fun View.hideKeyboard() {
-        val inputManager =
-            context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        inputManager.hideSoftInputFromWindow(windowToken, 0)
     }
 
 
@@ -96,6 +108,31 @@ class AuthFragment : Fragment() {
             requestAuth()
             it.hideKeyboard()
         }
+
+        val userTextWatcher = object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) = Unit
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                binding.user.error = null
+            }
+
+            override fun afterTextChanged(s: Editable?) = Unit
+
+        }
+
+        val tokenTextWatcher = object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int)= Unit
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                binding.token.error = null
+            }
+
+            override fun afterTextChanged(s: Editable?)=Unit
+
+        }
+
+        binding.tokenEditText.addTextChangedListener(tokenTextWatcher)
+        binding.userNameEditText.addTextChangedListener(userTextWatcher)
 
     }
 }

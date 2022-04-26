@@ -22,10 +22,13 @@ class AuthViewModel @Inject constructor(
     private val _installationsLiveData = MutableLiveData<AuthUiState>()
     val installationsLiveData: LiveData<AuthUiState> = _installationsLiveData
 
+    val _userNameLiveData = MutableLiveData<AuthUiState>()
+    val _tokenLiveData = MutableLiveData<AuthUiState>()
+
 
     fun launchAuth(user: String, token: String) {
 
-        if (token.isNotBlank()) {
+        if (token.isNotBlank() && user.isNotBlank()) {
 
             viewModelScope.launch {
 
@@ -55,8 +58,16 @@ class AuthViewModel @Inject constructor(
                 }
             }
 
-
+        } else {
+            if (token.isBlank()) {
+                _tokenLiveData.postValue(AuthUiState.TokenError)
+            }
+            if (user.isBlank()) {
+                _userNameLiveData.postValue(AuthUiState.UserNameError)
+            }
         }
     }
+
+
 }
 
